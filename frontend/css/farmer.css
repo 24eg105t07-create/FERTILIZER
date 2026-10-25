@@ -1,0 +1,301 @@
+/* ============================================================
+   AgriWise: Farmer Specific Components & Visualizations
+   ============================================================ */
+
+/* Nutrient Visual Status Cards */
+.nutrient-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 1.25rem;
+  margin-bottom: 2rem;
+}
+
+.nutrient-card {
+  background: #ffffff;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-subtle);
+  padding: 1.25rem;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  transition: all 0.25s ease;
+}
+
+.nutrient-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+}
+
+.nutrient-card.status-low::before { background-color: var(--status-low); }
+.nutrient-card.status-medium::before { background-color: var(--status-med); }
+.nutrient-card.status-optimal::before { background-color: var(--status-opt); }
+.nutrient-card.status-high::before { background-color: var(--status-high); }
+.nutrient-card.status-acidic::before { background-color: #f97316; }
+.nutrient-card.status-alkaline::before { background-color: #8b5cf6; }
+
+.nutrient-symbol {
+  font-family: 'Poppins', sans-serif;
+  font-size: 1.8rem;
+  font-weight: 800;
+  color: var(--primary-deep);
+  line-height: 1;
+  margin-bottom: 0.25rem;
+}
+
+.nutrient-name {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 0.6rem;
+}
+
+.nutrient-value {
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.nutrient-unit {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+.nutrient-badge {
+  display: inline-block;
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 0.2rem 0.6rem;
+  border-radius: 20px;
+  margin-top: 0.5rem;
+  text-transform: uppercase;
+}
+
+/* Soil Attention Notice Banner */
+.soil-attention-banner {
+  background: linear-gradient(135deg, #fff7ed 0%, #fef3c7 100%);
+  border-left: 5px solid #f59e0b;
+  border-radius: var(--radius-sm);
+  padding: 1.25rem 1.5rem;
+  margin-bottom: 2rem;
+  box-shadow: var(--shadow-sm);
+}
+
+.soil-attention-title {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #92400e;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.4rem;
+}
+
+.soil-attention-body {
+  font-size: 0.92rem;
+  color: #78350f;
+  margin: 0;
+}
+
+/* Visual Process Stepper (FARM -> TEST -> ANALYSIS -> CROP -> PLAN) */
+.agri-process-flow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #ffffff;
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  padding: 1.25rem 1.5rem;
+  margin-bottom: 2rem;
+  overflow-x: auto;
+}
+
+.process-step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  min-width: 90px;
+}
+
+.process-step-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: #f1f5f9;
+  color: var(--text-secondary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+  margin-bottom: 0.4rem;
+  border: 2px solid #e2e8f0;
+  transition: all 0.2s ease;
+}
+
+.process-step.active .process-step-icon {
+  background: var(--primary-leaf);
+  color: #ffffff;
+  border-color: var(--primary-leaf);
+  box-shadow: 0 4px 10px rgba(45, 106, 79, 0.25);
+}
+
+.process-step.completed .process-step-icon {
+  background: var(--primary-tint);
+  color: var(--primary-leaf);
+  border-color: var(--primary-accent);
+}
+
+.process-step-label {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+
+.process-step.active .process-step-label {
+  color: var(--primary-deep);
+  font-weight: 700;
+}
+
+.process-arrow {
+  color: #cbd5e1;
+  font-size: 1.3rem;
+  margin: 0 0.5rem;
+}
+
+/* 6-Stage Fertilizer Schedule Timeline */
+.schedule-timeline {
+  position: relative;
+  padding-left: 2.25rem;
+  margin-top: 1.5rem;
+}
+
+.schedule-timeline::before {
+  content: "";
+  position: absolute;
+  top: 15px;
+  bottom: 15px;
+  left: 12px;
+  width: 3px;
+  background-color: #cbd5e1;
+}
+
+.schedule-stage-card {
+  position: relative;
+  background: #ffffff;
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  padding: 1.25rem 1.5rem;
+  margin-bottom: 1.5rem;
+  box-shadow: var(--shadow-sm);
+  transition: all 0.2s ease;
+}
+
+.schedule-stage-card:hover {
+  border-color: var(--primary-accent);
+  box-shadow: var(--shadow-md);
+}
+
+.schedule-stage-dot {
+  position: absolute;
+  top: 1.5rem;
+  left: -2.35rem;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: #ffffff;
+  border: 4px solid var(--primary-leaf);
+  box-shadow: 0 0 0 3px rgba(45, 106, 79, 0.15);
+}
+
+.stage-title {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--primary-deep);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+}
+
+.stage-category-chip {
+  background: var(--primary-tint);
+  color: var(--primary-leaf);
+  font-size: 0.78rem;
+  font-weight: 600;
+  padding: 0.2rem 0.6rem;
+  border-radius: 6px;
+}
+
+.stage-meta {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 0.75rem;
+  font-size: 0.88rem;
+  color: var(--text-secondary);
+  background: #f8fafc;
+  padding: 0.85rem 1rem;
+  border-radius: var(--radius-sm);
+  margin-top: 0.75rem;
+}
+
+.stage-meta-item strong {
+  color: var(--text-primary);
+}
+
+/* Explainability Box ("WHY THIS RECOMMENDATION") */
+.explain-card {
+  background: #f0fdf4;
+  border: 1.5px solid #bbf7d0;
+  border-radius: var(--radius-md);
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.explain-header {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--primary-deep);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.explain-text {
+  font-size: 0.94rem;
+  color: #14532d;
+  white-space: pre-line;
+  line-height: 1.6;
+}
+
+/* Warnings Box */
+.warning-card {
+  background: #fff1f2;
+  border: 1.5px solid #fecdd3;
+  border-radius: var(--radius-md);
+  padding: 1.25rem 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.warning-header {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #be123c;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.warning-text {
+  font-size: 0.9rem;
+  color: #9f1239;
+  line-height: 1.5;
+}

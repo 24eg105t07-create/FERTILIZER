@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Farmer Management | AgriWise Admin</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/dashboard.css">
+</head>
+<body>
+
+  <div class="dashboard-wrapper">
+    <aside class="dashboard-sidebar" style="background: linear-gradient(180deg, #0f172a 0%, #1e293b 60%, #143527 100%);">
+      <div class="sidebar-header">
+        <a class="sidebar-brand text-white" href="/admin/dashboard.html">
+          <div class="brand-logo-icon" style="background: linear-gradient(135deg, #2563eb, #10b981);">🛡️</div>
+          <span>AgriWise Admin</span>
+        </a>
+      </div>
+      <ul class="sidebar-menu">
+        <li class="sidebar-category">Agronomy Telemetry</li>
+        <li class="sidebar-item"><a href="/admin/dashboard.html" class="sidebar-link"><i class="bi bi-grid-1x2"></i> <span>Dashboard</span></a></li>
+        <li class="sidebar-item"><a href="/admin/analytics.html" class="sidebar-link"><i class="bi bi-graph-up"></i> <span>Analytics</span></a></li>
+        <li class="sidebar-category">User &amp; Land Registry</li>
+        <li class="sidebar-item"><a href="/admin/farmers.html" class="sidebar-link active"><i class="bi bi-people"></i> <span>Farmers</span></a></li>
+        <li class="sidebar-item"><a href="/admin/farms.html" class="sidebar-link"><i class="bi bi-geo-alt"></i> <span>Farms</span></a></li>
+        <li class="sidebar-item"><a href="/admin/fields.html" class="sidebar-link"><i class="bi bi-border-all"></i> <span>Fields</span></a></li>
+        <li class="sidebar-category">Soil &amp; Recommendation Control</li>
+        <li class="sidebar-item"><a href="/admin/soil-tests.html" class="sidebar-link"><i class="bi bi-eyedropper"></i> <span>Soil Tests</span></a></li>
+        <li class="sidebar-item"><a href="/admin/soil-analysis.html" class="sidebar-link"><i class="bi bi-cpu"></i> <span>Soil Analysis</span></a></li>
+        <li class="sidebar-item"><a href="/admin/recommendations.html" class="sidebar-link"><i class="bi bi-magic"></i> <span>Recommendations</span></a></li>
+        <li class="sidebar-item"><a href="/admin/messages.html" class="sidebar-link"><i class="bi bi-envelope"></i> <span>Messages Log</span></a></li>
+        <li class="sidebar-category">Agronomic Catalogue</li>
+        <li class="sidebar-item"><a href="/admin/crops.html" class="sidebar-link"><i class="bi bi-tree"></i> <span>Crops</span></a></li>
+        <li class="sidebar-item"><a href="/admin/fertilizers.html" class="sidebar-link"><i class="bi bi-box-seam"></i> <span>Fertilizers</span></a></li>
+        <li class="sidebar-item"><a href="/admin/reports.html" class="sidebar-link"><i class="bi bi-file-earmark-bar-graph"></i> <span>Reports</span></a></li>
+        <li class="sidebar-item"><a href="/admin/settings.html" class="sidebar-link"><i class="bi bi-sliders"></i> <span>Settings &amp; Rules</span></a></li>
+      </ul>
+      <div class="sidebar-footer">
+        <div class="user-profile-preview">
+          <div class="user-avatar-circle" style="background-color: #3b82f6; color: #fff;">A</div>
+          <div class="flex-grow-1 overflow-hidden">
+            <div class="user-meta-name user-display-name">Lead Agronomist</div>
+            <div class="user-meta-role">System Administrator</div>
+          </div>
+          <a href="#" class="btn-logout text-danger text-opacity-75"><i class="bi bi-box-arrow-right"></i></a>
+        </div>
+      </div>
+    </aside>
+
+    <div class="dashboard-main">
+      <header class="top-header">
+        <div class="header-left">
+          <button class="btn-sidebar-toggle" type="button"><i class="bi bi-list"></i></button>
+          <h1 class="header-page-title">Registered Farmers Directory</h1>
+        </div>
+        <div class="header-right">
+          <div class="input-group input-group-sm" style="width: 260px;">
+            <input type="text" id="farmer-search-input" class="form-control" placeholder="Search farmer name / state...">
+            <button class="btn btn-outline-secondary" type="button" onclick="loadFarmers()"><i class="bi bi-search"></i></button>
+          </div>
+        </div>
+      </header>
+
+      <main class="dashboard-content">
+        <div class="agri-card mb-4">
+          <div class="d-flex align-items-center justify-content-between mb-3 border-bottom pb-2">
+            <div>
+              <h5 class="fw-bold mb-0 text-dark">Farmer Profiles &amp; Land Ownership</h5>
+              <small class="text-muted">Multi-region producers registered in AgriWise</small>
+            </div>
+          </div>
+
+          <div class="table-responsive">
+            <table class="table agri-table">
+              <thead>
+                <tr>
+                  <th>Farmer Name</th>
+                  <th>Contact Email &amp; Phone</th>
+                  <th>Location (State / District)</th>
+                  <th>Classification</th>
+                  <th>Farms</th>
+                  <th>Tests</th>
+                  <th>Plans</th>
+                  <th class="text-end">Actions</th>
+                </tr>
+              </thead>
+              <tbody id="admin-farmers-table">
+                <tr><td colspan="8" class="text-center py-4"><span class="spinner-border spinner-border-sm me-2"></span> Loading farmers...</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <!-- Farmer Inspection Modal -->
+  <div class="modal fade" id="farmerInspectModal" tabindex="-1">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header bg-light">
+          <h5 class="modal-title fw-bold text-dark"><i class="bi bi-person-badge text-success me-2"></i> Farmer Profile &amp; Landholdings</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body" id="farmerInspectModalBody">
+          <!-- Populated dynamically -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="/js/auth.js"></script>
+  <script>
+    async function loadFarmers() {
+      if (!AgriAuth.guard('admin')) return;
+      AgriAuth.initUI();
+
+      const search = document.getElementById('farmer-search-input')?.value || '';
+      const res = await AgriAuth.fetch(`/api/admin/farmers?search=${encodeURIComponent(search)}`);
+      const container = document.getElementById('admin-farmers-table');
+
+      if (!res.success || !res.farmers || res.farmers.length === 0) {
+        container.innerHTML = '<tr><td colspan="8" class="text-center py-4 text-muted">No farmers found matching query.</td></tr>';
+        return;
+      }
+
+      container.innerHTML = res.farmers.map(f => `
+        <tr>
+          <td class="fw-bold text-dark">${f.name}</td>
+          <td>${f.email} <br><small class="text-muted">${f.phone || '-'}</small></td>
+          <td>${f.state || '-'}, ${f.district || '-'}</td>
+          <td><span class="badge bg-light text-dark border">${f.farmer_type || 'Smallholder'}</span></td>
+          <td><span class="badge bg-success-subtle text-success">${f.farms_count || 0} Farms</span></td>
+          <td><span class="badge bg-primary-subtle text-primary">${f.tests_count || 0} Tests</span></td>
+          <td><span class="badge bg-warning-subtle text-warning-emphasis">${f.recs_count || 0} Plans</span></td>
+          <td class="text-end">
+            <button class="btn btn-sm btn-agri" onclick="inspectFarmer(${f.id})">
+              <i class="bi bi-eye me-1"></i> Details
+            </button>
+          </td>
+        </tr>
+      `).join('');
+    }
+
+    async function inspectFarmer(farmerId) {
+      const res = await AgriAuth.fetch(`/api/admin/farmers/${farmerId}`);
+      if (!res.success || !res.farmer) {
+        AgriAuth.toast('Error fetching farmer profile', 'error');
+        return;
+      }
+
+      const f = res.farmer;
+      const modalBody = document.getElementById('farmerInspectModalBody');
+      modalBody.innerHTML = `
+        <div class="row g-3 mb-3">
+          <div class="col-md-6">
+            <p class="mb-1"><strong>Name:</strong> ${f.name}</p>
+            <p class="mb-1"><strong>Email:</strong> ${f.email}</p>
+            <p class="mb-1"><strong>Phone:</strong> ${f.phone || 'N/A'}</p>
+          </div>
+          <div class="col-md-6">
+            <p class="mb-1"><strong>State / District:</strong> ${f.state || 'N/A'}, ${f.district || 'N/A'}</p>
+            <p class="mb-1"><strong>Village / Town:</strong> ${f.village || 'N/A'}</p>
+            <p class="mb-1"><strong>Farmer Category:</strong> ${f.farmer_type || 'Smallholder'}</p>
+          </div>
+        </div>
+
+        <h6 class="fw-bold border-bottom pb-2 text-success"><i class="bi bi-geo-alt me-1"></i> Registered Farm Holdings (${(f.farms || []).length})</h6>
+        <div class="table-responsive mb-3">
+          <table class="table table-sm table-bordered">
+            <thead class="table-light"><tr><th>Farm Name</th><th>State</th><th>District</th><th>Area (Acres)</th><th>Irrigation</th></tr></thead>
+            <tbody>
+              ${(f.farms || []).map(fm => `<tr><td>${fm.farm_name}</td><td>${fm.state}</td><td>${fm.district}</td><td>${fm.area}</td><td>${fm.irrigation || 'Canal'}</td></tr>`).join('')}
+            </tbody>
+          </table>
+        </div>
+
+        <h6 class="fw-bold border-bottom pb-2 text-primary"><i class="bi bi-eyedropper me-1"></i> Submitted Soil Tests (${(f.soil_tests || []).length})</h6>
+        <div class="table-responsive">
+          <table class="table table-sm table-bordered">
+            <thead class="table-light"><tr><th>Sample ID</th><th>Date</th><th>Holding</th><th>Field</th><th>Status</th></tr></thead>
+            <tbody>
+              ${(f.soil_tests || []).map(st => `<tr><td>${st.sample_id}</td><td>${new Date(st.test_date).toLocaleDateString()}</td><td>${st.farm_name}</td><td>${st.field_name}</td><td>${st.status}</td></tr>`).join('')}
+            </tbody>
+          </table>
+        </div>
+      `;
+
+      const modal = new bootstrap.Modal(document.getElementById('farmerInspectModal'));
+      modal.show();
+    }
+
+    document.addEventListener('DOMContentLoaded', loadFarmers);
+  </script>
+</body>
+</html>

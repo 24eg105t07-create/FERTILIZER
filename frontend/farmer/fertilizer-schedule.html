@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fertilizer Schedule | AgriWise Farmer</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/dashboard.css">
+  <link rel="stylesheet" href="/css/farmer.css">
+</head>
+<body>
+
+  <div class="dashboard-wrapper">
+    <aside class="dashboard-sidebar">
+      <div class="sidebar-header">
+        <a class="sidebar-brand" href="/farmer/dashboard.html">
+          <div class="brand-logo-icon">🌱</div>
+          <span>AgriWise</span>
+        </a>
+      </div>
+      <ul class="sidebar-menu">
+        <li class="sidebar-category">Overview</li>
+        <li class="sidebar-item"><a href="/farmer/dashboard.html" class="sidebar-link"><i class="bi bi-grid-1x2"></i> <span>Dashboard</span></a></li>
+        <li class="sidebar-item"><a href="/farmer/profile.html" class="sidebar-link"><i class="bi bi-person-badge"></i> <span>My Profile</span></a></li>
+        <li class="sidebar-category">Farm Management</li>
+        <li class="sidebar-item"><a href="/farmer/farms.html" class="sidebar-link"><i class="bi bi-geo-alt"></i> <span>My Farms</span></a></li>
+        <li class="sidebar-item"><a href="/farmer/fields.html" class="sidebar-link"><i class="bi bi-border-all"></i> <span>My Fields</span></a></li>
+        <li class="sidebar-category">Soil &amp; Testing</li>
+        <li class="sidebar-item"><a href="/farmer/soil-details.html" class="sidebar-link"><i class="bi bi-layers"></i> <span>Soil Details</span></a></li>
+        <li class="sidebar-item"><a href="/farmer/soil-test.html" class="sidebar-link"><i class="bi bi-eyedropper"></i> <span>Soil Test Requests</span></a></li>
+        <li class="sidebar-item"><a href="/farmer/soil-results.html" class="sidebar-link"><i class="bi bi-card-checklist"></i> <span>Soil Test Results</span></a></li>
+        <li class="sidebar-category">Fertilizer Plans</li>
+        <li class="sidebar-item"><a href="/farmer/recommendations.html" class="sidebar-link"><i class="bi bi-magic"></i> <span>Recommendations</span></a></li>
+        <li class="sidebar-item"><a href="/farmer/fertilizer-schedule.html" class="sidebar-link active"><i class="bi bi-calendar3-week"></i> <span>Fertilizer Schedule</span></a></li>
+        <li class="sidebar-item"><a href="/farmer/fertilizer-history.html" class="sidebar-link"><i class="bi bi-clock-history"></i> <span>Fertilizer History</span></a></li>
+        <li class="sidebar-item"><a href="/farmer/soil-history.html" class="sidebar-link"><i class="bi bi-graph-up-arrow"></i> <span>Soil Health</span></a></li>
+        <li class="sidebar-category">Communication &amp; Reports</li>
+        <li class="sidebar-item"><a href="/farmer/messages.html" class="sidebar-link"><i class="bi bi-envelope"></i> <span>Messages</span></a></li>
+        <li class="sidebar-item"><a href="/farmer/reports.html" class="sidebar-link"><i class="bi bi-file-earmark-pdf"></i> <span>Reports</span></a></li>
+        <li class="sidebar-item"><a href="/farmer/settings.html" class="sidebar-link"><i class="bi bi-gear"></i> <span>Settings</span></a></li>
+      </ul>
+      <div class="sidebar-footer">
+        <div class="user-profile-preview">
+          <div class="user-avatar-circle">F</div>
+          <div class="flex-grow-1 overflow-hidden">
+            <div class="user-meta-name user-display-name">Farmer</div>
+            <div class="user-meta-role">Farmer Account</div>
+          </div>
+          <a href="#" class="btn-logout text-danger text-opacity-75"><i class="bi bi-box-arrow-right"></i></a>
+        </div>
+      </div>
+    </aside>
+
+    <div class="dashboard-main">
+      <header class="top-header">
+        <div class="header-left">
+          <button class="btn-sidebar-toggle" type="button"><i class="bi bi-list"></i></button>
+          <h1 class="header-page-title">Seasonal Fertilizer Application Schedule</h1>
+        </div>
+        <div class="header-right">
+          <button class="btn btn-outline-dark btn-sm" onclick="window.print()"><i class="bi bi-printer me-1"></i> Print Schedule</button>
+        </div>
+      </header>
+
+      <main class="dashboard-content">
+        <!-- Field Selector Bar -->
+        <div class="agri-card mb-4">
+          <div class="row align-items-center">
+            <div class="col-md-7">
+              <h5 class="fw-bold mb-1 text-dark"><i class="bi bi-calendar-event text-success me-2"></i> 6-Stage Nutrient Timeline</h5>
+              <p class="text-secondary small mb-0">Follow this stage-wise application calendar to deliver nutrients precisely when plant roots can absorb them.</p>
+            </div>
+            <div class="col-md-5 mt-3 mt-md-0 text-md-end">
+              <span class="badge bg-success-subtle text-success p-2">Standard Active Crop: Wheat / Field Crops</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 6-Stage Timeline -->
+        <div class="schedule-timeline" id="farmer-schedule-timeline">
+          <!-- Stage 1 -->
+          <div class="schedule-stage-card">
+            <div class="schedule-stage-dot"></div>
+            <div class="stage-title">
+              <span>Stage 1: PRE-SOWING (Land Prep)</span>
+              <span class="stage-category-chip">Organic Manure &amp; Humus</span>
+            </div>
+            <div class="stage-meta">
+              <div class="stage-meta-item"><strong>Focus Nutrient:</strong> Soil Organic Carbon &amp; Biology</div>
+              <div class="stage-meta-item"><strong>Timing:</strong> 15-20 days before sowing</div>
+              <div class="stage-meta-item"><strong>Application Method:</strong> Deep incorporation via disc plough</div>
+              <div class="stage-meta-item"><strong>Status:</strong> <span class="badge bg-success">Completed</span></div>
+            </div>
+            <p class="mt-2 mb-0 small text-secondary">Incorporate 4-5 tonnes/acre of well-decomposed Farmyard Manure (FYM) or 1.5 tonnes/acre vermicompost to buffer soil moisture and support soil mycorrhiza.</p>
+          </div>
+
+          <!-- Stage 2 -->
+          <div class="schedule-stage-card">
+            <div class="schedule-stage-dot"></div>
+            <div class="stage-title">
+              <span>Stage 2: BASAL (At Sowing / Day 0)</span>
+              <span class="stage-category-chip">Compound Starter (DAP / Complex) + Micronutrient</span>
+            </div>
+            <div class="stage-meta">
+              <div class="stage-meta-item"><strong>Focus Nutrient:</strong> Phosphorus + Starter N + Zinc</div>
+              <div class="stage-meta-item"><strong>Timing:</strong> At sowing time</div>
+              <div class="stage-meta-item"><strong>Application Method:</strong> Band placement 4-5 cm below seed</div>
+              <div class="stage-meta-item"><strong>Status:</strong> <span class="badge bg-primary">Scheduled</span></div>
+            </div>
+            <p class="mt-2 mb-0 small text-secondary">Phosphorus is non-mobile in soil. Drill Di-Ammonium Phosphate (DAP) or SSP below seed depth so emerging radical roots immediately access phosphate for root elongation.</p>
+          </div>
+
+          <!-- Stage 3 -->
+          <div class="schedule-stage-card">
+            <div class="schedule-stage-dot"></div>
+            <div class="stage-title">
+              <span>Stage 3: VEGETATIVE (Crown Root / Active Tillering)</span>
+              <span class="stage-category-chip">Nitrogen (Neem Coated Urea)</span>
+            </div>
+            <div class="stage-meta">
+              <div class="stage-meta-item"><strong>Focus Nutrient:</strong> Nitrogen (1st Split Top Dress)</div>
+              <div class="stage-meta-item"><strong>Timing:</strong> 20-25 days after sowing (DAS)</div>
+              <div class="stage-meta-item"><strong>Application Method:</strong> Broadcast followed by light irrigation</div>
+              <div class="stage-meta-item"><strong>Status:</strong> <span class="badge bg-secondary">Upcoming</span></div>
+            </div>
+            <p class="mt-2 mb-0 small text-secondary">Apply 1st split of Neem Coated Urea under field-capacity moisture to boost tiller count and photosynthetic leaf area.</p>
+          </div>
+
+          <!-- Stage 4 -->
+          <div class="schedule-stage-card">
+            <div class="schedule-stage-dot"></div>
+            <div class="stage-title">
+              <span>Stage 4: FLOWERING (Jointing to Panicle / Tassel Initiation)</span>
+              <span class="stage-category-chip">Nitrogen &amp; Potash (Urea + MOP)</span>
+            </div>
+            <div class="stage-meta">
+              <div class="stage-meta-item"><strong>Focus Nutrient:</strong> Nitrogen (2nd Split) + Potassium</div>
+              <div class="stage-meta-item"><strong>Timing:</strong> 45-55 days after sowing (DAS)</div>
+              <div class="stage-meta-item"><strong>Application Method:</strong> Surface broadcasting in damp soil</div>
+              <div class="stage-meta-item"><strong>Status:</strong> <span class="badge bg-secondary">Upcoming</span></div>
+            </div>
+            <p class="mt-2 mb-0 small text-secondary">Crucial phase determining grain/spikelet count. Avoid late nitrogen spikes which cause crop lodging or succulent stems susceptible to fungal rusts.</p>
+          </div>
+
+          <!-- Stage 5 -->
+          <div class="schedule-stage-card">
+            <div class="schedule-stage-dot"></div>
+            <div class="stage-title">
+              <span>Stage 5: FRUIT / GRAIN DEVELOPMENT (Milking to Dough)</span>
+              <span class="stage-category-chip">Water Soluble Potassium &amp; Micronutrients</span>
+            </div>
+            <div class="stage-meta">
+              <div class="stage-meta-item"><strong>Focus Nutrient:</strong> Potassium Translocation &amp; Boron</div>
+              <div class="stage-meta-item"><strong>Timing:</strong> 70-80 days after sowing</div>
+              <div class="stage-meta-item"><strong>Application Method:</strong> Foliar spray during cool evening hours</div>
+              <div class="stage-meta-item"><strong>Status:</strong> <span class="badge bg-secondary">Upcoming</span></div>
+            </div>
+            <p class="mt-2 mb-0 small text-secondary">Demo guidance: 1% foliar spray of Potassium Nitrate (13:0:45) or SOP (0:0:50) prevents premature flag leaf drying and maximizes 1000-grain weight.</p>
+          </div>
+
+          <!-- Stage 6 -->
+          <div class="schedule-stage-card">
+            <div class="schedule-stage-dot"></div>
+            <div class="stage-title">
+              <span>Stage 6: HARVEST &amp; RESIDUE MANAGEMENT</span>
+              <span class="stage-category-chip">Crop Stubble Incorporation</span>
+            </div>
+            <div class="stage-meta">
+              <div class="stage-meta-item"><strong>Focus:</strong> Soil Nutrient Recycling &amp; Carbon Audit</div>
+              <div class="stage-meta-item"><strong>Timing:</strong> Post-harvest</div>
+              <div class="stage-meta-item"><strong>Method:</strong> In-situ shredding and soil incorporation</div>
+              <div class="stage-meta-item"><strong>Status:</strong> <span class="badge bg-secondary">Post-Season</span></div>
+            </div>
+            <p class="mt-2 mb-0 small text-secondary">Do NOT burn crop residue. Incorporating straw returns up to 80% of potassium and 40% of phosphorus back to the soil bank for subsequent crop cycles.</p>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="/js/auth.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      AgriAuth.guard('farmer');
+      AgriAuth.initUI();
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AgriWise | AI-Based Smart Fertilizer Recommendation System</title>
+  <!-- Bootstrap 5 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Bootstrap Icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <!-- Custom Stylesheet -->
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <nav class="navbar navbar-expand-lg agri-nav sticky-top">
+    <div class="container">
+      <a class="brand-logo" href="/index.html">
+        <div class="brand-logo-icon">🌱</div>
+        <span>AgriWise</span>
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="mainNav">
+        <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+          <li class="nav-item"><a class="nav-link active" href="#overview">Overview</a></li>
+          <li class="nav-item"><a class="nav-link" href="#features">Features</a></li>
+          <li class="nav-item"><a class="nav-link" href="#how-it-works">How It Works</a></li>
+          <li class="nav-item"><a class="nav-link" href="#soil-science">Soil Science</a></li>
+          <li class="nav-item"><a class="nav-link" href="#multi-region">Multi-Region</a></li>
+        </ul>
+        <div class="d-flex align-items-center gap-2">
+          <a href="/login.html" class="btn btn-agri-outline btn-sm">Farmer Portal</a>
+          <a href="/admin/login.html" class="btn btn-outline-secondary btn-sm"><i class="bi bi-shield-lock me-1"></i> Agronomist / Admin</a>
+          <a href="/register.html" class="btn btn-agri btn-sm">Join Free</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero-section" id="overview">
+    <div class="container">
+      <div class="row align-items-center g-5">
+        <div class="col-lg-7">
+          <div class="hero-tagline">
+            <i class="bi bi-patch-check-fill text-success"></i> Intelligent Precision Agriculture Platform
+          </div>
+          <h1 class="hero-title">
+            Know Your Soil.<br>
+            Feed Your Crop.<br>
+            <span>Grow Smarter.</span>
+          </h1>
+          <p class="hero-lead">
+            An intelligent soil testing and fertilizer recommendation system designed to help farmers make better nutrient-management decisions. Stop over-fertilizing and start feeding your crops with scientific precision.
+          </p>
+          <div class="d-flex flex-wrap gap-3 mb-4">
+            <a href="/register.html" class="btn btn-agri btn-lg px-4">
+              <i class="bi bi-arrow-right-circle-fill me-2"></i> Get Started
+            </a>
+            <a href="#how-it-works" class="btn btn-agri-outline btn-lg px-4">
+              <i class="bi bi-play-circle me-2"></i> Explore How It Works
+            </a>
+          </div>
+          <div class="d-flex align-items-center gap-4 text-secondary small pt-2">
+            <div><i class="bi bi-check-circle-fill text-success me-1"></i> Multi-Region Scalable</div>
+            <div><i class="bi bi-check-circle-fill text-success me-1"></i> Agronomist Verified</div>
+            <div><i class="bi bi-check-circle-fill text-success me-1"></i> Explainable Rules</div>
+          </div>
+        </div>
+
+        <div class="col-lg-5">
+          <div class="hero-visual-card">
+            <div class="d-flex align-items-center justify-content-between mb-3 border-bottom pb-3">
+              <div>
+                <span class="badge bg-success-subtle text-success fw-bold px-2 py-1">SOIL HEALTH PULSE</span>
+                <h6 class="fw-bold text-dark mt-1 mb-0">Warangal Alluvial Plot #01</h6>
+              </div>
+              <span class="badge bg-light text-dark border">Sample: AGRI-2026</span>
+            </div>
+
+            <div class="row g-2 mb-3">
+              <div class="col-4">
+                <div class="p-2 border rounded-2 text-center bg-light">
+                  <div class="text-danger fw-bold small">Nitrogen (N)</div>
+                  <div class="fw-bold">215 kg/ha</div>
+                  <span class="badge bg-danger-subtle text-danger" style="font-size: 0.65rem;">DEFICIENT</span>
+                </div>
+              </div>
+              <div class="col-4">
+                <div class="p-2 border rounded-2 text-center bg-light">
+                  <div class="text-danger fw-bold small">Phosphate (P)</div>
+                  <div class="fw-bold">14.5 kg/ha</div>
+                  <span class="badge bg-danger-subtle text-danger" style="font-size: 0.65rem;">LOW</span>
+                </div>
+              </div>
+              <div class="col-4">
+                <div class="p-2 border rounded-2 text-center bg-light">
+                  <div class="text-success fw-bold small">Potash (K)</div>
+                  <div class="fw-bold">260 kg/ha</div>
+                  <span class="badge bg-success-subtle text-success" style="font-size: 0.65rem;">OPTIMAL</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="p-3 bg-success-subtle rounded-3 border border-success-subtle mb-3">
+              <div class="d-flex align-items-center gap-2 text-success fw-bold small mb-1">
+                <i class="bi bi-lightbulb-fill"></i> Explainable Agronomic Decision:
+              </div>
+              <p class="small text-dark mb-0" style="line-height: 1.4;">
+                Phosphorus and Nitrogen require priority basal intervention. Recommend <strong>Di-Ammonium Phosphate (DAP)</strong> banded 5cm below seed, followed by split urea top-dressing.
+              </p>
+            </div>
+
+            <div class="d-flex justify-content-between align-items-center text-muted small">
+              <span><i class="bi bi-shield-check text-success me-1"></i> Validated by Lead Agronomist</span>
+              <span class="fw-semibold text-success">Cost Reduction: ~18%</span>
+            </div>
+
+            <!-- Floating Stat Bubbles -->
+            <div class="hero-stat-bubble bubble-left">
+              <i class="bi bi-tree-fill text-success" style="font-size: 1.3rem;"></i>
+              <div>
+                <div class="text-muted" style="font-size: 0.72rem;">SOIL CARBON</div>
+                <div class="text-dark fw-bold">0.42% (Needs FYM)</div>
+              </div>
+            </div>
+            <div class="hero-stat-bubble bubble-right">
+              <i class="bi bi-graph-up-arrow text-warning" style="font-size: 1.3rem;"></i>
+              <div>
+                <div class="text-muted" style="font-size: 0.72rem;">YIELD EFFICIENCY</div>
+                <div class="text-dark fw-bold">+24% Optimization</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Agronomic Objective Banner -->
+  <section class="py-4 text-white" style="background: linear-gradient(90deg, #143527 0%, #1b4332 100%);">
+    <div class="container text-center">
+      <p class="text-uppercase fw-semibold mb-1 text-warning" style="letter-spacing: 0.1em; font-size: 0.82rem;">The 4R Nutrient Stewardship Principle</p>
+      <h3 class="fw-bold text-white mb-0">"Right Nutrient &bull; Right Source &bull; Right Time &bull; Right Method"</h3>
+    </div>
+  </section>
+
+  <!-- Problem & Solution Section -->
+  <section class="py-5" id="features">
+    <div class="container py-4">
+      <div class="text-center max-w-700 mx-auto mb-5">
+        <span class="badge bg-success-subtle text-success px-3 py-2 fw-semibold mb-2">PRECISION NUTRIENT MANAGEMENT</span>
+        <h2 class="fw-bold">Why Traditional Fertilizer Application Fails</h2>
+        <p class="text-secondary">Blindly adding more fertilizer degrades soil biology, leaches into groundwater, and burns farmer profits without increasing yields.</p>
+      </div>
+
+      <div class="row g-4">
+        <div class="col-md-4">
+          <div class="agri-card h-100">
+            <div class="agri-feature-icon"><i class="bi bi-slash-circle"></i></div>
+            <h5 class="fw-bold mb-2">Prevent Nutrient Imbalance</h5>
+            <p class="text-secondary small">Continuous high nitrogen application without adequate phosphorus or potash induces vegetative lodging, increases pest infestation, and depletes organic carbon.</p>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="agri-card h-100">
+            <div class="agri-feature-icon"><i class="bi bi-shield-shaded"></i></div>
+            <h5 class="fw-bold mb-2">Agronomist Review &amp; Safety</h5>
+            <p class="text-secondary small">No automated black-box recommendations. Every AI rule-generated recommendation is scrutinized and approved by certified agronomists before dispatch to farmers.</p>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="agri-card h-100">
+            <div class="agri-feature-icon"><i class="bi bi-calendar3-range"></i></div>
+            <h5 class="fw-bold mb-2">6-Stage Application Schedule</h5>
+            <p class="text-secondary small">Transform complex fertilizer charts into actionable stages: Pre-sowing, Basal, Vegetative Tillering, Flowering, Grain Development, and Residue Incorporation.</p>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="agri-card h-100">
+            <div class="agri-feature-icon"><i class="bi bi-chat-left-text"></i></div>
+            <h5 class="fw-bold mb-2">Transparent Explainability</h5>
+            <p class="text-secondary small">Every recommendation clearly states the <strong>"WHY"</strong>: which soil parameter triggered the advisory, the crop growth stage demand, and specific field topography context.</p>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="agri-card h-100">
+            <div class="agri-feature-icon"><i class="bi bi-cash-stack"></i></div>
+            <h5 class="fw-bold mb-2">Cost &amp; Runoff Reduction</h5>
+            <p class="text-secondary small">Avoid unnecessary expenditures on nutrients already abundant in your soil. Mitigate nitrogen runoff and phosphate fixation with customized placement techniques.</p>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="agri-card h-100">
+            <div class="agri-feature-icon"><i class="bi bi-globe2"></i></div>
+            <h5 class="fw-bold mb-2">Multi-Region Architecture</h5>
+            <p class="text-secondary small">Engineered for diverse agro-climatic zones, state soil classifications (Alluvial, Black, Red, Sandy Loam), irrigation infrastructure, and multi-crop rotations.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- How It Works Section -->
+  <section class="py-5 bg-light" id="how-it-works">
+    <div class="container py-4">
+      <div class="text-center mb-5">
+        <span class="badge bg-warning-subtle text-warning-emphasis px-3 py-2 fw-semibold mb-2">END-TO-END WORKFLOW</span>
+        <h2 class="fw-bold">From Soil Test to Harvest In 4 Simple Steps</h2>
+      </div>
+
+      <div class="row g-4 text-center">
+        <div class="col-md-3">
+          <div class="agri-card h-100 border-top border-4 border-success">
+            <div class="display-6 fw-bold text-success mb-2">01</div>
+            <h5 class="fw-bold">Register &amp; Log Field</h5>
+            <p class="small text-secondary">Add your farm and field plots with area, soil type, irrigation system, and target crop rotation.</p>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="agri-card h-100 border-top border-4 border-primary">
+            <div class="display-6 fw-bold text-primary mb-2">02</div>
+            <h5 class="fw-bold">Submit Soil Test</h5>
+            <p class="small text-secondary">Enter available test lab numbers (NPK, pH, EC, Organic Carbon) or upload your lab PDF/photo report.</p>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="agri-card h-100 border-top border-4 border-warning">
+            <div class="display-6 fw-bold text-warning mb-2">03</div>
+            <h5 class="fw-bold">AI Analysis &amp; Review</h5>
+            <p class="small text-secondary">Rule engine calculates deficiencies. Lead agronomists review, refine, and approve the tailored schedule.</p>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="agri-card h-100 border-top border-4 border-dark">
+            <div class="display-6 fw-bold text-dark mb-2">04</div>
+            <h5 class="fw-bold">Receive Plan &amp; Grow</h5>
+            <p class="small text-secondary">Get instant in-app alerts and notifications. View multi-stage timing, application methods, and printable reports.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Multi-Region Section -->
+  <section class="py-5" id="multi-region">
+    <div class="container py-4">
+      <div class="row align-items-center g-5">
+        <div class="col-lg-6">
+          <span class="badge bg-success-subtle text-success px-3 py-2 fw-semibold mb-2">SCALABLE ARCHITECTURE</span>
+          <h2 class="fw-bold">Engineered for Every State, Soil, and Farming System</h2>
+          <p class="text-secondary mb-4">
+            AgriWise is built with configurable agronomic thresholds. Whether you are cultivating Wheat in Punjab or Haryana, Rice in Telangana or West Bengal, Cotton in Gujarat or Maharashtra, or Vegetables under Drip Fertigation, the system adapts dynamically to local soil chemistry.
+          </p>
+          <div class="row g-3">
+            <div class="col-6">
+              <div class="p-3 border rounded-3 bg-light">
+                <h6 class="fw-bold text-dark mb-1"><i class="bi bi-layers-fill text-success me-1"></i> Major Soil Types</h6>
+                <p class="small text-muted mb-0">Alluvial, Black Vertisols, Red Laterite, Sandy Loam, Peaty.</p>
+              </div>
+            </div>
+            <div class="col-6">
+              <div class="p-3 border rounded-3 bg-light">
+                <h6 class="fw-bold text-dark mb-1"><i class="bi bi-water text-primary me-1"></i> Water Sources</h6>
+                <p class="small text-muted mb-0">Canal Network, Tubewell, Drip Fertigation, Rainfed Basin.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <div class="agri-card p-4">
+            <h5 class="fw-bold mb-3 border-bottom pb-2">Configurable Nutrient Threshold Matrix</h5>
+            <div class="table-responsive">
+              <table class="table table-sm agri-table">
+                <thead>
+                  <tr>
+                    <th>Nutrient</th>
+                    <th>Low Threshold</th>
+                    <th>Optimal Target</th>
+                    <th>High Reserve</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><strong>Nitrogen (N)</strong></td>
+                    <td><span class="badge bg-danger-subtle text-danger">&lt; 280 kg/ha</span></td>
+                    <td><span class="badge bg-success-subtle text-success">280 - 560</span></td>
+                    <td><span class="badge bg-primary-subtle text-primary">&gt; 560 kg/ha</span></td>
+                  </tr>
+                  <tr>
+                    <td><strong>Phosphorus (P)</strong></td>
+                    <td><span class="badge bg-danger-subtle text-danger">&lt; 23 kg/ha</span></td>
+                    <td><span class="badge bg-success-subtle text-success">23 - 56</span></td>
+                    <td><span class="badge bg-primary-subtle text-primary">&gt; 56 kg/ha</span></td>
+                  </tr>
+                  <tr>
+                    <td><strong>Potassium (K)</strong></td>
+                    <td><span class="badge bg-danger-subtle text-danger">&lt; 145 kg/ha</span></td>
+                    <td><span class="badge bg-success-subtle text-success">145 - 335</span></td>
+                    <td><span class="badge bg-primary-subtle text-primary">&gt; 335 kg/ha</span></td>
+                  </tr>
+                  <tr>
+                    <td><strong>Soil pH</strong></td>
+                    <td><span class="badge bg-warning-subtle text-warning-emphasis">&lt; 6.5 (Acidic)</span></td>
+                    <td><span class="badge bg-success-subtle text-success">6.5 - 7.5 (Neutral)</span></td>
+                    <td><span class="badge bg-info-subtle text-info-emphasis">&gt; 7.8 (Alkaline)</span></td>
+                  </tr>
+                  <tr>
+                    <td><strong>Organic Carbon</strong></td>
+                    <td><span class="badge bg-danger-subtle text-danger">&lt; 0.50 %</span></td>
+                    <td><span class="badge bg-success-subtle text-success">0.50 - 0.75 %</span></td>
+                    <td><span class="badge bg-primary-subtle text-primary">&gt; 0.75 %</span></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <p class="small text-muted mb-0 mt-2">
+              <i class="bi bi-info-circle me-1"></i> Regional threshold guidelines are configurable by Agronomist Administrators via the Admin Settings Portal.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Banner -->
+  <section class="py-5" style="background: linear-gradient(135deg, #1b4332 0%, #2d6a4f 100%); color: #ffffff;">
+    <div class="container text-center py-4">
+      <h2 class="fw-bold mb-3">Ready to Maximize Yield &amp; Soil Health?</h2>
+      <p class="lead mb-4 text-light max-w-700 mx-auto">Create your free farmer account today, register your fields, and get your first agronomist-validated fertilizer plan.</p>
+      <div class="d-flex justify-content-center gap-3">
+        <a href="/register.html" class="btn btn-light btn-lg px-4 text-success fw-bold">Sign Up as Farmer</a>
+        <a href="/login.html" class="btn btn-outline-light btn-lg px-4">Sign In</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="agri-footer">
+    <div class="container">
+      <div class="row g-4 mb-4">
+        <div class="col-md-4">
+          <div class="brand-logo text-white mb-2">
+            <div class="brand-logo-icon">🌱</div>
+            <span class="text-white">AgriWise</span>
+          </div>
+          <p class="small text-muted">AI-Based Smart Fertilizer Recommendation System. Bridging precision soil science, agronomist intelligence, and sustainable farming.</p>
+        </div>
+        <div class="col-md-2 col-6">
+          <h6 class="text-white fw-bold mb-3">Farmers</h6>
+          <ul class="list-unstyled small">
+            <li><a href="/login.html">Farmer Sign In</a></li>
+            <li><a href="/register.html">Farmer Register</a></li>
+            <li><a href="/farmer/soil-test.html">Soil Test Request</a></li>
+            <li><a href="/farmer/fertilizer-schedule.html">Fertilizer Schedule</a></li>
+          </ul>
+        </div>
+        <div class="col-md-2 col-6">
+          <h6 class="text-white fw-bold mb-3">Agronomists</h6>
+          <ul class="list-unstyled small">
+            <li><a href="/admin/login.html">Admin Login</a></li>
+            <li><a href="/admin/dashboard.html">Admin Dashboard</a></li>
+            <li><a href="/admin/soil-tests.html">Soil Test Review</a></li>
+            <li><a href="/admin/analytics.html">System Analytics</a></li>
+          </ul>
+        </div>
+        <div class="col-md-4">
+          <h6 class="text-white fw-bold mb-3">Demo Credentials</h6>
+          <div class="p-3 bg-dark rounded-3 small">
+            <div><strong>Farmer:</strong> farmer@example.com / Farmer@123</div>
+            <div class="mt-1"><strong>Admin:</strong> admin@example.com / Admin@123</div>
+            <div class="text-warning mt-2" style="font-size: 0.72rem;">* Demo credentials for evaluation purposes. Change before production deployment.</div>
+          </div>
+        </div>
+      </div>
+      <div class="border-top border-secondary pt-3 text-center small text-muted">
+        &copy; 2026 AgriWise - AI-Based Smart Fertilizer Recommendation System. All rights reserved.
+      </div>
+    </div>
+  </footer>
+
+  <!-- Bootstrap 5 JS Bundle -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

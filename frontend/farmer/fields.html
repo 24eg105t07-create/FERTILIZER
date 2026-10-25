@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Fields | AgriWise Farmer</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/dashboard.css">
+</head>
+<body>
+
+  <div class="dashboard-wrapper">
+    <aside class="dashboard-sidebar">
+      <div class="sidebar-header">
+        <a class="sidebar-brand" href="/farmer/dashboard.html">
+          <div class="brand-logo-icon">🌱</div>
+          <span>AgriWise</span>
+        </a>
+      </div>
+      <ul class="sidebar-menu">
+        <li class="sidebar-category">Overview</li>
+        <li class="sidebar-item"><a href="/farmer/dashboard.html" class="sidebar-link"><i class="bi bi-grid-1x2"></i> <span>Dashboard</span></a></li>
+        <li class="sidebar-item"><a href="/farmer/profile.html" class="sidebar-link"><i class="bi bi-person-badge"></i> <span>My Profile</span></a></li>
+        <li class="sidebar-category">Farm Management</li>
+        <li class="sidebar-item"><a href="/farmer/farms.html" class="sidebar-link"><i class="bi bi-geo-alt"></i> <span>My Farms</span></a></li>
+        <li class="sidebar-item"><a href="/farmer/fields.html" class="sidebar-link active"><i class="bi bi-border-all"></i> <span>My Fields</span></a></li>
+        <li class="sidebar-category">Soil &amp; Testing</li>
+        <li class="sidebar-item"><a href="/farmer/soil-details.html" class="sidebar-link"><i class="bi bi-layers"></i> <span>Soil Details</span></a></li>
+        <li class="sidebar-item"><a href="/farmer/soil-test.html" class="sidebar-link"><i class="bi bi-eyedropper"></i> <span>Soil Test Requests</span></a></li>
+        <li class="sidebar-item"><a href="/farmer/soil-results.html" class="sidebar-link"><i class="bi bi-card-checklist"></i> <span>Soil Test Results</span></a></li>
+        <li class="sidebar-category">Fertilizer Plans</li>
+        <li class="sidebar-item"><a href="/farmer/recommendations.html" class="sidebar-link"><i class="bi bi-magic"></i> <span>Recommendations</span></a></li>
+        <li class="sidebar-item"><a href="/farmer/fertilizer-schedule.html" class="sidebar-link"><i class="bi bi-calendar3-week"></i> <span>Fertilizer Schedule</span></a></li>
+        <li class="sidebar-item"><a href="/farmer/fertilizer-history.html" class="sidebar-link"><i class="bi bi-clock-history"></i> <span>Fertilizer History</span></a></li>
+        <li class="sidebar-item"><a href="/farmer/soil-history.html" class="sidebar-link"><i class="bi bi-graph-up-arrow"></i> <span>Soil Health</span></a></li>
+        <li class="sidebar-category">Communication &amp; Reports</li>
+        <li class="sidebar-item"><a href="/farmer/messages.html" class="sidebar-link"><i class="bi bi-envelope"></i> <span>Messages</span></a></li>
+        <li class="sidebar-item"><a href="/farmer/reports.html" class="sidebar-link"><i class="bi bi-file-earmark-pdf"></i> <span>Reports</span></a></li>
+        <li class="sidebar-item"><a href="/farmer/settings.html" class="sidebar-link"><i class="bi bi-gear"></i> <span>Settings</span></a></li>
+      </ul>
+      <div class="sidebar-footer">
+        <div class="user-profile-preview">
+          <div class="user-avatar-circle">F</div>
+          <div class="flex-grow-1 overflow-hidden">
+            <div class="user-meta-name user-display-name">Farmer</div>
+            <div class="user-meta-role">Farmer Account</div>
+          </div>
+          <a href="#" class="btn-logout text-danger text-opacity-75"><i class="bi bi-box-arrow-right"></i></a>
+        </div>
+      </div>
+    </aside>
+
+    <div class="dashboard-main">
+      <header class="top-header">
+        <div class="header-left">
+          <button class="btn-sidebar-toggle" type="button"><i class="bi bi-list"></i></button>
+          <h1 class="header-page-title">My Field Plots</h1>
+        </div>
+        <div class="header-right">
+          <button class="btn btn-agri btn-sm" data-bs-toggle="modal" data-bs-target="#addFieldModal">
+            <i class="bi bi-plus-circle me-1"></i> Register Field Plot
+          </button>
+        </div>
+      </header>
+
+      <main class="dashboard-content">
+        <div class="agri-card mb-4">
+          <div class="d-flex align-items-center justify-content-between mb-3">
+            <div>
+              <h5 class="fw-bold mb-0 text-dark">Cultivated Fields &amp; Crops</h5>
+              <small class="text-muted">Track soil characteristics, current and previous crop rotations for each plot</small>
+            </div>
+            <button class="btn btn-agri-outline btn-sm" data-bs-toggle="modal" data-bs-target="#addFieldModal">
+              <i class="bi bi-plus-lg me-1"></i> Add Field
+            </button>
+          </div>
+
+          <div class="table-responsive">
+            <table class="table agri-table">
+              <thead>
+                <tr>
+                  <th>Field Name / #</th>
+                  <th>Farm Holding</th>
+                  <th>Area</th>
+                  <th>Soil Type</th>
+                  <th>Current Crop</th>
+                  <th>Previous Crop</th>
+                  <th class="text-end">Actions</th>
+                </tr>
+              </thead>
+              <tbody id="fields-table-body">
+                <tr><td colspan="7" class="text-center py-4"><span class="spinner-border spinner-border-sm me-2"></span> Loading fields...</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <!-- Add Field Modal -->
+  <div class="modal fade" id="addFieldModal" tabindex="-1">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header bg-light">
+          <h5 class="modal-title fw-bold text-success"><i class="bi bi-border-all me-2"></i> Add Field Plot</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <form onsubmit="AgriFarmer.handleAddField(event)">
+          <div class="modal-body">
+            <div class="row g-3">
+              <div class="col-md-6">
+                <label class="form-label">Associated Farm Holding *</label>
+                <select name="farm_id" id="field-farm-select" class="form-select" required>
+                  <option value="">-- Choose Farm --</option>
+                </select>
+              </div>
+              <div class="col-md-6">
+                <label class="form-label">Field Name or Plot Number *</label>
+                <input type="text" name="field_name" class="form-control" placeholder="e.g. Field 01 - North Plot" required>
+              </div>
+              <div class="col-md-4">
+                <label class="form-label">Plot Area (Acres) *</label>
+                <input type="number" step="0.1" name="area" class="form-control" placeholder="e.g. 4.5" value="4.0" required>
+              </div>
+              <div class="col-md-4">
+                <label class="form-label">Soil Type *</label>
+                <select name="soil_type" class="form-select" required>
+                  <option value="Sandy Clay Loam">Sandy Clay Loam</option>
+                  <option value="Alluvial Soil">Alluvial Soil</option>
+                  <option value="Black Clay Soil (Vertisol)">Black Clay Soil</option>
+                  <option value="Red Sandy Loam">Red Sandy Loam</option>
+                  <option value="Clay Loam">Clay Loam</option>
+                  <option value="Laterite Soil">Laterite Soil</option>
+                </select>
+              </div>
+              <div class="col-md-4">
+                <label class="form-label">Topography / Slope</label>
+                <select name="topography" class="form-select">
+                  <option value="Flat / Plain">Flat / Plain</option>
+                  <option value="Gently Sloping">Gently Sloping</option>
+                  <option value="Terraced">Terraced</option>
+                  <option value="Lowland Basin">Lowland Basin</option>
+                </select>
+              </div>
+              <div class="col-md-6">
+                <label class="form-label">Current / Planned Crop *</label>
+                <input type="text" name="current_crop" class="form-control" placeholder="e.g. Wheat / Rice / Cotton / Tomato" required>
+              </div>
+              <div class="col-md-6">
+                <label class="form-label">Previous Harvested Crop</label>
+                <input type="text" name="previous_crop" class="form-control" placeholder="e.g. Rice / Paddy / Maize">
+              </div>
+              <div class="col-md-6">
+                <label class="form-label">Sowing Date</label>
+                <input type="date" name="sowing_date" class="form-control">
+              </div>
+              <div class="col-md-6">
+                <label class="form-label">Expected Harvest Date</label>
+                <input type="date" name="harvest_date" class="form-control">
+              </div>
+              <div class="col-md-6">
+                <label class="form-label">Irrigation Method</label>
+                <select name="irrigation_type" class="form-select">
+                  <option value="Canal / Flood">Canal / Flood</option>
+                  <option value="Drip Irrigation">Drip Irrigation</option>
+                  <option value="Sprinkler">Sprinkler</option>
+                  <option value="Rainfed">Rainfed</option>
+                </select>
+              </div>
+              <div class="col-md-6">
+                <label class="form-label">Soil Drainage Capacity</label>
+                <select name="drainage" class="form-select">
+                  <option value="Good">Good</option>
+                  <option value="Moderate" selected>Moderate</option>
+                  <option value="Poor">Poor (Waterlogging Risk)</option>
+                  <option value="Excessive">Excessive (Rapid Leaching)</option>
+                </select>
+              </div>
+              <div class="col-12">
+                <label class="form-label">Farming Method</label>
+                <input type="text" name="farming_method" class="form-control" placeholder="e.g. Conventional Tillage / Zero Tillage / Raised Bed" value="Conventional Tillage">
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Cancel</button>
+            <button type="submit" class="btn btn-agri btn-sm"><i class="bi bi-save me-1"></i> Save Field</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="/js/auth.js"></script>
+  <script src="/js/farmer.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      AgriFarmer.initFields();
+    });
+  </script>
+</body>
+</html>

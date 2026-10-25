@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Soil Analysis Console | AgriWise Admin</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/dashboard.css">
+  <link rel="stylesheet" href="/css/admin.css">
+</head>
+<body>
+
+  <div class="dashboard-wrapper">
+    <aside class="dashboard-sidebar" style="background: linear-gradient(180deg, #0f172a 0%, #1e293b 60%, #143527 100%);">
+      <div class="sidebar-header">
+        <a class="sidebar-brand text-white" href="/admin/dashboard.html">
+          <div class="brand-logo-icon" style="background: linear-gradient(135deg, #2563eb, #10b981);">🛡️</div>
+          <span>AgriWise Admin</span>
+        </a>
+      </div>
+      <ul class="sidebar-menu">
+        <li class="sidebar-category">Agronomy Telemetry</li>
+        <li class="sidebar-item"><a href="/admin/dashboard.html" class="sidebar-link"><i class="bi bi-grid-1x2"></i> <span>Dashboard</span></a></li>
+        <li class="sidebar-item"><a href="/admin/analytics.html" class="sidebar-link"><i class="bi bi-graph-up"></i> <span>Analytics</span></a></li>
+        <li class="sidebar-category">User &amp; Land Registry</li>
+        <li class="sidebar-item"><a href="/admin/farmers.html" class="sidebar-link"><i class="bi bi-people"></i> <span>Farmers</span></a></li>
+        <li class="sidebar-item"><a href="/admin/farms.html" class="sidebar-link"><i class="bi bi-geo-alt"></i> <span>Farms</span></a></li>
+        <li class="sidebar-item"><a href="/admin/fields.html" class="sidebar-link"><i class="bi bi-border-all"></i> <span>Fields</span></a></li>
+        <li class="sidebar-category">Soil &amp; Recommendation Control</li>
+        <li class="sidebar-item"><a href="/admin/soil-tests.html" class="sidebar-link"><i class="bi bi-eyedropper"></i> <span>Soil Tests</span></a></li>
+        <li class="sidebar-item"><a href="/admin/soil-analysis.html" class="sidebar-link active"><i class="bi bi-cpu"></i> <span>Soil Analysis</span></a></li>
+        <li class="sidebar-item"><a href="/admin/recommendations.html" class="sidebar-link"><i class="bi bi-magic"></i> <span>Recommendations</span></a></li>
+        <li class="sidebar-item"><a href="/admin/messages.html" class="sidebar-link"><i class="bi bi-envelope"></i> <span>Messages Log</span></a></li>
+        <li class="sidebar-category">Agronomic Catalogue</li>
+        <li class="sidebar-item"><a href="/admin/crops.html" class="sidebar-link"><i class="bi bi-tree"></i> <span>Crops</span></a></li>
+        <li class="sidebar-item"><a href="/admin/fertilizers.html" class="sidebar-link"><i class="bi bi-box-seam"></i> <span>Fertilizers</span></a></li>
+        <li class="sidebar-item"><a href="/admin/reports.html" class="sidebar-link"><i class="bi bi-file-earmark-bar-graph"></i> <span>Reports</span></a></li>
+        <li class="sidebar-item"><a href="/admin/settings.html" class="sidebar-link"><i class="bi bi-sliders"></i> <span>Settings &amp; Rules</span></a></li>
+      </ul>
+      <div class="sidebar-footer">
+        <div class="user-profile-preview">
+          <div class="user-avatar-circle" style="background-color: #3b82f6; color: #fff;">A</div>
+          <div class="flex-grow-1 overflow-hidden">
+            <div class="user-meta-name user-display-name">Lead Agronomist</div>
+            <div class="user-meta-role">System Administrator</div>
+          </div>
+          <a href="#" class="btn-logout text-danger text-opacity-75"><i class="bi bi-box-arrow-right"></i></a>
+        </div>
+      </div>
+    </aside>
+
+    <div class="dashboard-main">
+      <header class="top-header">
+        <div class="header-left">
+          <button class="btn-sidebar-toggle" type="button"><i class="bi bi-list"></i></button>
+          <h1 class="header-page-title">Soil Nutrient Analysis &amp; Parameter Classification</h1>
+        </div>
+        <div class="header-right">
+          <a href="/admin/soil-tests.html" class="btn btn-outline-secondary btn-sm"><i class="bi bi-eyedropper me-1"></i> Soil Tests</a>
+        </div>
+      </header>
+
+      <main class="dashboard-content">
+        <div class="agri-card mb-4">
+          <h5 class="fw-bold mb-3 border-bottom pb-2 text-dark">Classified Soil Health Indicators</h5>
+          <div class="table-responsive">
+            <table class="table agri-table">
+              <thead>
+                <tr>
+                  <th>Sample ID</th>
+                  <th>Farmer</th>
+                  <th>Nitrogen (N)</th>
+                  <th>Phosphorus (P)</th>
+                  <th>Potassium (K)</th>
+                  <th>Soil pH</th>
+                  <th>Organic Carbon</th>
+                  <th class="text-end">Action</th>
+                </tr>
+              </thead>
+              <tbody id="analysis-table-body">
+                <tr><td colspan="8" class="text-center py-4"><span class="spinner-border spinner-border-sm me-2"></span> Loading analysis...</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="/js/auth.js"></script>
+  <script src="/js/admin.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', async () => {
+      if (!AgriAuth.guard('admin')) return;
+      AgriAuth.initUI();
+
+      const res = await AgriAuth.fetch('/api/admin/soil-tests');
+      const table = document.getElementById('analysis-table-body');
+
+      if (!res.success || !res.tests || res.tests.length === 0) {
+        table.innerHTML = '<tr><td colspan="8" class="text-center py-4 text-muted">No soil tests found.</td></tr>';
+        return;
+      }
+
+      table.innerHTML = res.tests.map(t => `
+        <tr>
+          <td class="fw-bold text-dark">${t.sample_id}</td>
+          <td>${t.farmer_name}</td>
+          <td><span class="badge ${t.nitrogen_status === 'LOW' ? 'badge-low' : 'badge-optimal'}">${t.nitrogen_status || 'PENDING'}</span></td>
+          <td><span class="badge ${t.phosphorus_status === 'LOW' ? 'badge-low' : 'badge-optimal'}">${t.phosphorus_status || 'PENDING'}</span></td>
+          <td><span class="badge ${t.potassium_status === 'LOW' ? 'badge-low' : 'badge-optimal'}">${t.potassium_status || 'PENDING'}</span></td>
+          <td><span class="badge ${t.ph_status === 'OPTIMAL' ? 'badge-optimal' : 'badge-alkaline'}">${t.ph_status || 'PENDING'}</span></td>
+          <td><span class="badge ${t.organic_carbon_status === 'LOW' ? 'badge-low' : 'badge-optimal'}">${t.organic_carbon_status || 'PENDING'}</span></td>
+          <td class="text-end">
+            <button class="btn btn-sm btn-agri" onclick="AgriAdmin.generateRecommendationForTest(${t.id})">
+              <i class="bi bi-magic me-1"></i> Generate Plan
+            </button>
+          </td>
+        </tr>
+      `).join('');
+    });
+  </script>
+</body>
+</html>

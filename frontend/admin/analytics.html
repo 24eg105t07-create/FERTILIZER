@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Agronomic Analytics | AgriWise Admin</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/dashboard.css">
+</head>
+<body>
+
+  <div class="dashboard-wrapper">
+    <aside class="dashboard-sidebar" style="background: linear-gradient(180deg, #0f172a 0%, #1e293b 60%, #143527 100%);">
+      <div class="sidebar-header">
+        <a class="sidebar-brand text-white" href="/admin/dashboard.html">
+          <div class="brand-logo-icon" style="background: linear-gradient(135deg, #2563eb, #10b981);">🛡️</div>
+          <span>AgriWise Admin</span>
+        </a>
+      </div>
+      <ul class="sidebar-menu">
+        <li class="sidebar-category">Agronomy Telemetry</li>
+        <li class="sidebar-item"><a href="/admin/dashboard.html" class="sidebar-link"><i class="bi bi-grid-1x2"></i> <span>Dashboard</span></a></li>
+        <li class="sidebar-item"><a href="/admin/analytics.html" class="sidebar-link active"><i class="bi bi-graph-up"></i> <span>Analytics</span></a></li>
+        <li class="sidebar-category">User &amp; Land Registry</li>
+        <li class="sidebar-item"><a href="/admin/farmers.html" class="sidebar-link"><i class="bi bi-people"></i> <span>Farmers</span></a></li>
+        <li class="sidebar-item"><a href="/admin/farms.html" class="sidebar-link"><i class="bi bi-geo-alt"></i> <span>Farms</span></a></li>
+        <li class="sidebar-item"><a href="/admin/fields.html" class="sidebar-link"><i class="bi bi-border-all"></i> <span>Fields</span></a></li>
+        <li class="sidebar-category">Soil &amp; Recommendation Control</li>
+        <li class="sidebar-item"><a href="/admin/soil-tests.html" class="sidebar-link"><i class="bi bi-eyedropper"></i> <span>Soil Tests</span></a></li>
+        <li class="sidebar-item"><a href="/admin/soil-analysis.html" class="sidebar-link"><i class="bi bi-cpu"></i> <span>Soil Analysis</span></a></li>
+        <li class="sidebar-item"><a href="/admin/recommendations.html" class="sidebar-link"><i class="bi bi-magic"></i> <span>Recommendations</span></a></li>
+        <li class="sidebar-item"><a href="/admin/messages.html" class="sidebar-link"><i class="bi bi-envelope"></i> <span>Messages Log</span></a></li>
+        <li class="sidebar-category">Agronomic Catalogue</li>
+        <li class="sidebar-item"><a href="/admin/crops.html" class="sidebar-link"><i class="bi bi-tree"></i> <span>Crops</span></a></li>
+        <li class="sidebar-item"><a href="/admin/fertilizers.html" class="sidebar-link"><i class="bi bi-box-seam"></i> <span>Fertilizers</span></a></li>
+        <li class="sidebar-item"><a href="/admin/reports.html" class="sidebar-link"><i class="bi bi-file-earmark-bar-graph"></i> <span>Reports</span></a></li>
+        <li class="sidebar-item"><a href="/admin/settings.html" class="sidebar-link"><i class="bi bi-sliders"></i> <span>Settings &amp; Rules</span></a></li>
+      </ul>
+      <div class="sidebar-footer">
+        <div class="user-profile-preview">
+          <div class="user-avatar-circle" style="background-color: #3b82f6; color: #fff;">A</div>
+          <div class="flex-grow-1 overflow-hidden">
+            <div class="user-meta-name user-display-name">Lead Agronomist</div>
+            <div class="user-meta-role">System Administrator</div>
+          </div>
+          <a href="#" class="btn-logout text-danger text-opacity-75"><i class="bi bi-box-arrow-right"></i></a>
+        </div>
+      </div>
+    </aside>
+
+    <div class="dashboard-main">
+      <header class="top-header">
+        <div class="header-left">
+          <button class="btn-sidebar-toggle" type="button"><i class="bi bi-list"></i></button>
+          <h1 class="header-page-title">Soil Nutrient &amp; Recommendation Telemetry</h1>
+        </div>
+      </header>
+
+      <main class="dashboard-content">
+        <!-- Quick KPI row -->
+        <div class="row g-3 mb-4">
+          <div class="col-sm-6 col-xl-3">
+            <div class="agri-card text-center py-3">
+              <span class="text-muted small text-uppercase fw-semibold">Active Farmers</span>
+              <h2 class="fw-bold text-dark mt-2 mb-0" id="an-farmers">0</h2>
+            </div>
+          </div>
+          <div class="col-sm-6 col-xl-3">
+            <div class="agri-card text-center py-3">
+              <span class="text-muted small text-uppercase fw-semibold">Managed Fields</span>
+              <h2 class="fw-bold text-dark mt-2 mb-0" id="an-fields">0</h2>
+            </div>
+          </div>
+          <div class="col-sm-6 col-xl-3">
+            <div class="agri-card text-center py-3">
+              <span class="text-muted small text-uppercase fw-semibold">Soil Tests Processed</span>
+              <h2 class="fw-bold text-dark mt-2 mb-0" id="an-tests">0</h2>
+            </div>
+          </div>
+          <div class="col-sm-6 col-xl-3">
+            <div class="agri-card text-center py-3">
+              <span class="text-muted small text-uppercase fw-semibold">Fertilizer Plans Dispatched</span>
+              <h2 class="fw-bold text-dark mt-2 mb-0" id="an-recs">0</h2>
+            </div>
+          </div>
+        </div>
+
+        <!-- Charts Grid -->
+        <div class="row g-4 mb-4">
+          <div class="col-lg-6">
+            <div class="agri-card h-100">
+              <h5 class="fw-bold mb-3 text-dark"><i class="bi bi-bar-chart-line text-success me-2"></i> Soil NPK Nutrient Levels</h5>
+              <div class="chart-box" style="position: relative; height: 280px;">
+                <canvas id="chart-npk-comparison"></canvas>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <div class="agri-card h-100">
+              <h5 class="fw-bold mb-3 text-dark"><i class="bi bi-pie-chart text-primary me-2"></i> Soil Reaction (pH Distribution)</h5>
+              <div class="chart-box" style="position: relative; height: 280px;">
+                <canvas id="chart-ph-dist"></canvas>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row g-4 mb-4">
+          <div class="col-lg-6">
+            <div class="agri-card h-100">
+              <h5 class="fw-bold mb-3 text-dark"><i class="bi bi-diagram-3 text-warning me-2"></i> Recommendation Lifecycle Pipeline</h5>
+              <div class="chart-box" style="position: relative; height: 280px;">
+                <canvas id="chart-rec-status"></canvas>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <div class="agri-card h-100">
+              <h5 class="fw-bold mb-3 text-dark"><i class="bi bi-flower1 text-success me-2"></i> Crops Across Monitored Fields</h5>
+              <div class="chart-box" style="position: relative; height: 280px;">
+                <canvas id="chart-top-crops"></canvas>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="/js/auth.js"></script>
+  <script src="/js/admin.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      AgriAdmin.initAnalytics();
+    });
+  </script>
+</body>
+</html>

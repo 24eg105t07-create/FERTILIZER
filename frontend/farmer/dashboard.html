@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Farmer Dashboard | AgriWise</title>
+  <!-- Bootstrap 5 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/dashboard.css">
+  <link rel="stylesheet" href="/css/farmer.css">
+</head>
+<body>
+
+  <div class="dashboard-wrapper">
+    <!-- Sidebar -->
+    <aside class="dashboard-sidebar">
+      <div class="sidebar-header">
+        <a class="sidebar-brand" href="/farmer/dashboard.html">
+          <div class="brand-logo-icon">🌱</div>
+          <span>AgriWise</span>
+        </a>
+      </div>
+
+      <ul class="sidebar-menu">
+        <li class="sidebar-category">Overview</li>
+        <li class="sidebar-item">
+          <a href="/farmer/dashboard.html" class="sidebar-link active">
+            <i class="bi bi-grid-1x2"></i> <span>Dashboard</span>
+          </a>
+        </li>
+        <li class="sidebar-item">
+          <a href="/farmer/profile.html" class="sidebar-link">
+            <i class="bi bi-person-badge"></i> <span>My Profile</span>
+          </a>
+        </li>
+
+        <li class="sidebar-category">Farm Management</li>
+        <li class="sidebar-item">
+          <a href="/farmer/farms.html" class="sidebar-link">
+            <i class="bi bi-geo-alt"></i> <span>My Farms</span>
+          </a>
+        </li>
+        <li class="sidebar-item">
+          <a href="/farmer/fields.html" class="sidebar-link">
+            <i class="bi bi-border-all"></i> <span>My Fields</span>
+          </a>
+        </li>
+
+        <li class="sidebar-category">Soil &amp; Testing</li>
+        <li class="sidebar-item">
+          <a href="/farmer/soil-details.html" class="sidebar-link">
+            <i class="bi bi-layers"></i> <span>Soil Details</span>
+          </a>
+        </li>
+        <li class="sidebar-item">
+          <a href="/farmer/soil-test.html" class="sidebar-link">
+            <i class="bi bi-eyedropper"></i> <span>Soil Test Requests</span>
+          </a>
+        </li>
+        <li class="sidebar-item">
+          <a href="/farmer/soil-results.html" class="sidebar-link">
+            <i class="bi bi-card-checklist"></i> <span>Soil Test Results</span>
+          </a>
+        </li>
+
+        <li class="sidebar-category">Fertilizer Plans</li>
+        <li class="sidebar-item">
+          <a href="/farmer/recommendations.html" class="sidebar-link">
+            <i class="bi bi-magic"></i> <span>Recommendations</span>
+          </a>
+        </li>
+        <li class="sidebar-item">
+          <a href="/farmer/fertilizer-schedule.html" class="sidebar-link">
+            <i class="bi bi-calendar3-week"></i> <span>Fertilizer Schedule</span>
+          </a>
+        </li>
+        <li class="sidebar-item">
+          <a href="/farmer/fertilizer-history.html" class="sidebar-link">
+            <i class="bi bi-clock-history"></i> <span>Fertilizer History</span>
+          </a>
+        </li>
+        <li class="sidebar-item">
+          <a href="/farmer/soil-history.html" class="sidebar-link">
+            <i class="bi bi-graph-up-arrow"></i> <span>Soil Health</span>
+          </a>
+        </li>
+
+        <li class="sidebar-category">Communication &amp; Reports</li>
+        <li class="sidebar-item">
+          <a href="/farmer/messages.html" class="sidebar-link">
+            <i class="bi bi-envelope"></i> <span>Messages</span>
+            <span class="sidebar-badge notif-counter" style="display: none;">0</span>
+          </a>
+        </li>
+        <li class="sidebar-item">
+          <a href="/farmer/reports.html" class="sidebar-link">
+            <i class="bi bi-file-earmark-pdf"></i> <span>Reports</span>
+          </a>
+        </li>
+        <li class="sidebar-item">
+          <a href="/farmer/settings.html" class="sidebar-link">
+            <i class="bi bi-gear"></i> <span>Settings</span>
+          </a>
+        </li>
+      </ul>
+
+      <div class="sidebar-footer">
+        <div class="user-profile-preview">
+          <div class="user-avatar-circle">H</div>
+          <div class="flex-grow-1 overflow-hidden">
+            <div class="user-meta-name user-display-name">Harini Bairi</div>
+            <div class="user-meta-role">Farmer Account</div>
+          </div>
+          <a href="#" class="btn-logout text-danger text-opacity-75" title="Sign Out">
+            <i class="bi bi-box-arrow-right" style="font-size: 1.2rem;"></i>
+          </a>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <div class="dashboard-main">
+      <!-- Top Header -->
+      <header class="top-header">
+        <div class="header-left">
+          <button class="btn-sidebar-toggle" type="button"><i class="bi bi-list"></i></button>
+          <h1 class="header-page-title">Farmer Overview</h1>
+        </div>
+        <div class="header-right">
+          <a href="/farmer/messages.html" class="notif-bell-btn" title="Notifications &amp; Messages">
+            <i class="bi bi-bell"></i>
+            <span class="notif-counter" style="display: none;">0</span>
+          </a>
+          <div class="d-none d-sm-block text-end">
+            <div class="small fw-bold text-dark user-display-name">Farmer</div>
+            <div class="text-muted" style="font-size: 0.75rem;">Verified Producer</div>
+          </div>
+        </div>
+      </header>
+
+      <!-- Dashboard Content Container -->
+      <main class="dashboard-content">
+        <!-- Welcome Banner -->
+        <div class="p-4 rounded-3 mb-4 text-white position-relative overflow-hidden" style="background: linear-gradient(135deg, #1b4332 0%, #2d6a4f 100%); box-shadow: var(--shadow-md);">
+          <div class="row align-items-center">
+            <div class="col-lg-8">
+              <span class="badge bg-white text-success fw-bold px-3 py-1 mb-2">PRECISION AGRI-ADVISORY</span>
+              <h3 class="fw-bold text-white mb-2">Welcome Back, <span class="user-display-name">Farmer</span>!</h3>
+              <p class="text-light text-opacity-90 mb-3" style="font-size: 0.95rem;">
+                Your crops perform best when nutrients match real soil lab data. Review your fields below, request soil tests, and follow agronomist-approved application schedules.
+              </p>
+              <div class="d-flex flex-wrap gap-2">
+                <a href="/farmer/soil-test.html" class="btn btn-light btn-sm text-success fw-bold">
+                  <i class="bi bi-eyedropper me-1"></i> Request Soil Test
+                </a>
+                <a href="/farmer/fields.html" class="btn btn-outline-light btn-sm">
+                  <i class="bi bi-plus-circle me-1"></i> Add Field Plot
+                </a>
+                <a href="/farmer/fertilizer-schedule.html" class="btn btn-outline-light btn-sm">
+                  <i class="bi bi-calendar-check me-1"></i> Fertilizer Schedule
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- KPI Telemetry Grid -->
+        <div class="row g-3 mb-4">
+          <div class="col-xl-2 col-md-4 col-6">
+            <div class="kpi-card">
+              <div>
+                <div class="kpi-title">Total Farms</div>
+                <div class="kpi-number" id="stat-total-farms">0</div>
+                <div class="kpi-subtext">Registered holdings</div>
+              </div>
+              <div class="kpi-icon-container kpi-green">
+                <i class="bi bi-geo-alt"></i>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-xl-2 col-md-4 col-6">
+            <div class="kpi-card">
+              <div>
+                <div class="kpi-title">Total Fields</div>
+                <div class="kpi-number" id="stat-total-fields">0</div>
+                <div class="kpi-subtext">Cultivated plots</div>
+              </div>
+              <div class="kpi-icon-container kpi-blue">
+                <i class="bi bi-border-all"></i>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-xl-2 col-md-4 col-6">
+            <div class="kpi-card">
+              <div>
+                <div class="kpi-title">Active Crops</div>
+                <div class="kpi-number" id="stat-active-crops">0</div>
+                <div class="kpi-subtext">Crop varieties</div>
+              </div>
+              <div class="kpi-icon-container kpi-amber">
+                <i class="bi bi-tree"></i>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-xl-2 col-md-4 col-6">
+            <div class="kpi-card">
+              <div>
+                <div class="kpi-title">Pending Tests</div>
+                <div class="kpi-number" id="stat-pending-tests">0</div>
+                <div class="kpi-subtext">Awaiting lab review</div>
+              </div>
+              <div class="kpi-icon-container kpi-rose">
+                <i class="bi bi-hourglass-split"></i>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-xl-2 col-md-4 col-6">
+            <div class="kpi-card">
+              <div>
+                <div class="kpi-title">Completed Tests</div>
+                <div class="kpi-number" id="stat-completed-tests">0</div>
+                <div class="kpi-subtext">Analyzed tests</div>
+              </div>
+              <div class="kpi-icon-container kpi-green">
+                <i class="bi bi-check2-circle"></i>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-xl-2 col-md-4 col-6">
+            <div class="kpi-card">
+              <div>
+                <div class="kpi-title">Unread Alerts</div>
+                <div class="kpi-number" id="stat-unread-messages">0</div>
+                <div class="kpi-subtext">Agronomist messages</div>
+              </div>
+              <div class="kpi-icon-container kpi-earth">
+                <i class="bi bi-chat-left-dots"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Middle Section: Latest Recommendation + Soil Nutrients Chart -->
+        <div class="row g-4 mb-4">
+          <!-- Latest Recommendation -->
+          <div class="col-lg-5">
+            <div class="agri-card h-100">
+              <div class="d-flex align-items-center justify-content-between mb-3 border-bottom pb-2">
+                <h5 class="fw-bold text-dark mb-0"><i class="bi bi-magic text-success me-2"></i> Latest Fertilizer Plan</h5>
+                <a href="/farmer/recommendations.html" class="small text-success fw-semibold text-decoration-none">View All</a>
+              </div>
+              <div id="latest-rec-card">
+                <div class="text-center py-4">
+                  <div class="spinner-border text-success spinner-border-sm" role="status"></div>
+                  <span class="ms-2 text-muted small">Loading recommendation...</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Soil Nutrients Overview Chart -->
+          <div class="col-lg-7">
+            <div class="agri-card h-100">
+              <div class="d-flex align-items-center justify-content-between mb-3 border-bottom pb-2">
+                <div>
+                  <h5 class="fw-bold text-dark mb-0"><i class="bi bi-bar-chart-line-fill text-success me-2"></i> Soil Nutrient Status (NPK Benchmark)</h5>
+                  <small class="text-muted">Current plot nitrogen, phosphorus &amp; potassium vs optimal threshold</small>
+                </div>
+                <a href="/farmer/soil-history.html" class="small text-success fw-semibold text-decoration-none">Full History</a>
+              </div>
+              <div style="height: 250px; position: relative;">
+                <canvas id="dashboard-npk-chart"></canvas>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Bottom Section: Recent Activity & Quick Navigation -->
+        <div class="row g-4">
+          <div class="col-lg-6">
+            <div class="agri-card">
+              <h5 class="fw-bold text-dark mb-3 border-bottom pb-2"><i class="bi bi-activity text-success me-2"></i> Recent Activity</h5>
+              <div id="recent-activity-list">
+                <div class="text-center py-3 text-muted small">Loading activity logs...</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-6">
+            <div class="agri-card">
+              <h5 class="fw-bold text-dark mb-3 border-bottom pb-2"><i class="bi bi-compass text-success me-2"></i> Field Management Hub</h5>
+              <div class="row g-2">
+                <div class="col-6">
+                  <a href="/farmer/soil-test.html" class="d-block p-3 border rounded-3 text-decoration-none bg-light text-dark hover-shadow">
+                    <i class="bi bi-file-earmark-plus text-success" style="font-size: 1.5rem;"></i>
+                    <div class="fw-bold mt-1">Submit Soil Test</div>
+                    <small class="text-muted">Enter lab readings or upload PDF report</small>
+                  </a>
+                </div>
+                <div class="col-6">
+                  <a href="/farmer/fertilizer-schedule.html" class="d-block p-3 border rounded-3 text-decoration-none bg-light text-dark hover-shadow">
+                    <i class="bi bi-calendar3-range text-primary" style="font-size: 1.5rem;"></i>
+                    <div class="fw-bold mt-1">Application Schedule</div>
+                    <small class="text-muted">6-stage fertilizer calendar</small>
+                  </a>
+                </div>
+                <div class="col-6">
+                  <a href="/farmer/fertilizer-history.html" class="d-block p-3 border rounded-3 text-decoration-none bg-light text-dark hover-shadow">
+                    <i class="bi bi-clock-history text-warning" style="font-size: 1.5rem;"></i>
+                    <div class="fw-bold mt-1">Fertilizer Log</div>
+                    <small class="text-muted">Track applications &amp; cost records</small>
+                  </a>
+                </div>
+                <div class="col-6">
+                  <a href="/farmer/reports.html" class="d-block p-3 border rounded-3 text-decoration-none bg-light text-dark hover-shadow">
+                    <i class="bi bi-printer text-secondary" style="font-size: 1.5rem;"></i>
+                    <div class="fw-bold mt-1">Printable Reports</div>
+                    <small class="text-muted">Audit-ready PDF / print summaries</small>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </main>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.2/dist/chart.umd.min.js"></script>
+  <script src="/js/auth.js"></script>
+  <script src="/js/charts.js"></script>
+  <script src="/js/farmer.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      AgriFarmer.initDashboard();
+    });
+  </script>
+</body>
+</html>

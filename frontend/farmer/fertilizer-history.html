@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fertilizer Application History | AgriWise Farmer</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/dashboard.css">
+</head>
+<body>
+
+  <div class="dashboard-wrapper">
+    <aside class="dashboard-sidebar">
+      <div class="sidebar-header">
+        <a class="sidebar-brand" href="/farmer/dashboard.html">
+          <div class="brand-logo-icon">🌱</div>
+          <span>AgriWise</span>
+        </a>
+      </div>
+      <ul class="sidebar-menu">
+        <li class="sidebar-category">Overview</li>
+        <li class="sidebar-item"><a href="/farmer/dashboard.html" class="sidebar-link"><i class="bi bi-grid-1x2"></i> <span>Dashboard</span></a></li>
+        <li class="sidebar-item"><a href="/farmer/profile.html" class="sidebar-link"><i class="bi bi-person-badge"></i> <span>My Profile</span></a></li>
+        <li class="sidebar-category">Farm Management</li>
+        <li class="sidebar-item"><a href="/farmer/farms.html" class="sidebar-link"><i class="bi bi-geo-alt"></i> <span>My Farms</span></a></li>
+        <li class="sidebar-item"><a href="/farmer/fields.html" class="sidebar-link"><i class="bi bi-border-all"></i> <span>My Fields</span></a></li>
+        <li class="sidebar-category">Soil &amp; Testing</li>
+        <li class="sidebar-item"><a href="/farmer/soil-details.html" class="sidebar-link"><i class="bi bi-layers"></i> <span>Soil Details</span></a></li>
+        <li class="sidebar-item"><a href="/farmer/soil-test.html" class="sidebar-link"><i class="bi bi-eyedropper"></i> <span>Soil Test Requests</span></a></li>
+        <li class="sidebar-item"><a href="/farmer/soil-results.html" class="sidebar-link"><i class="bi bi-card-checklist"></i> <span>Soil Test Results</span></a></li>
+        <li class="sidebar-category">Fertilizer Plans</li>
+        <li class="sidebar-item"><a href="/farmer/recommendations.html" class="sidebar-link"><i class="bi bi-magic"></i> <span>Recommendations</span></a></li>
+        <li class="sidebar-item"><a href="/farmer/fertilizer-schedule.html" class="sidebar-link"><i class="bi bi-calendar3-week"></i> <span>Fertilizer Schedule</span></a></li>
+        <li class="sidebar-item"><a href="/farmer/fertilizer-history.html" class="sidebar-link active"><i class="bi bi-clock-history"></i> <span>Fertilizer History</span></a></li>
+        <li class="sidebar-item"><a href="/farmer/soil-history.html" class="sidebar-link"><i class="bi bi-graph-up-arrow"></i> <span>Soil Health</span></a></li>
+        <li class="sidebar-category">Communication &amp; Reports</li>
+        <li class="sidebar-item"><a href="/farmer/messages.html" class="sidebar-link"><i class="bi bi-envelope"></i> <span>Messages</span></a></li>
+        <li class="sidebar-item"><a href="/farmer/reports.html" class="sidebar-link"><i class="bi bi-file-earmark-pdf"></i> <span>Reports</span></a></li>
+        <li class="sidebar-item"><a href="/farmer/settings.html" class="sidebar-link"><i class="bi bi-gear"></i> <span>Settings</span></a></li>
+      </ul>
+      <div class="sidebar-footer">
+        <div class="user-profile-preview">
+          <div class="user-avatar-circle">F</div>
+          <div class="flex-grow-1 overflow-hidden">
+            <div class="user-meta-name user-display-name">Farmer</div>
+            <div class="user-meta-role">Farmer Account</div>
+          </div>
+          <a href="#" class="btn-logout text-danger text-opacity-75"><i class="bi bi-box-arrow-right"></i></a>
+        </div>
+      </div>
+    </aside>
+
+    <div class="dashboard-main">
+      <header class="top-header">
+        <div class="header-left">
+          <button class="btn-sidebar-toggle" type="button"><i class="bi bi-list"></i></button>
+          <h1 class="header-page-title">Fertilizer History &amp; Nutrient Audit</h1>
+        </div>
+        <div class="header-right">
+          <button class="btn btn-agri btn-sm" data-bs-toggle="modal" data-bs-target="#logFertilizerModal">
+            <i class="bi bi-plus-circle me-1"></i> Log Fertilizer Application
+          </button>
+        </div>
+      </header>
+
+      <main class="dashboard-content">
+        <!-- Summary Cards -->
+        <div class="row g-3 mb-4">
+          <div class="col-md-4">
+            <div class="kpi-card">
+              <div>
+                <div class="kpi-title">Total Applications Logged</div>
+                <div class="kpi-number" id="hist-total-apps">0</div>
+                <div class="kpi-subtext">Fertilizer dressing events</div>
+              </div>
+              <div class="kpi-icon-container kpi-green"><i class="bi bi-journal-check"></i></div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="kpi-card">
+              <div>
+                <div class="kpi-title">Total Inputs Applied</div>
+                <div class="kpi-number" id="hist-total-qty">0 kg</div>
+                <div class="kpi-subtext">Cumulative weight applied</div>
+              </div>
+              <div class="kpi-icon-container kpi-blue"><i class="bi bi-box-seam"></i></div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="kpi-card">
+              <div>
+                <div class="kpi-title">Total Fertilizer Cost</div>
+                <div class="kpi-number" id="hist-total-cost">₹ 0</div>
+                <div class="kpi-subtext">Total nutrient investment</div>
+              </div>
+              <div class="kpi-icon-container kpi-amber"><i class="bi bi-currency-rupee"></i></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- History Table Card -->
+        <div class="agri-card mb-4">
+          <div class="d-flex align-items-center justify-content-between mb-3 border-bottom pb-2">
+            <div>
+              <h5 class="fw-bold mb-0 text-dark">Historical Fertilizer Application Logs</h5>
+              <small class="text-muted">Detailed records of nutrients applied per field plot</small>
+            </div>
+            <button class="btn btn-agri-outline btn-sm" data-bs-toggle="modal" data-bs-target="#logFertilizerModal">
+              <i class="bi bi-plus-lg me-1"></i> Record Entry
+            </button>
+          </div>
+
+          <div class="table-responsive">
+            <table class="table agri-table">
+              <thead>
+                <tr>
+                  <th>Date</th>
+                  <th>Plot Location</th>
+                  <th>Crop &amp; Stage</th>
+                  <th>Fertilizer Name</th>
+                  <th>Quantity</th>
+                  <th>Method</th>
+                  <th>Cost (₹)</th>
+                </tr>
+              </thead>
+              <tbody id="fertilizer-history-table">
+                <tr><td colspan="7" class="text-center py-4"><span class="spinner-border spinner-border-sm me-2"></span> Loading history...</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <!-- Log Application Modal -->
+  <div class="modal fade" id="logFertilizerModal" tabindex="-1">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header bg-light">
+          <h5 class="modal-title fw-bold text-success"><i class="bi bi-plus-circle me-2"></i> Log Fertilizer Application</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <form onsubmit="handleLogFertilizer(event)">
+          <div class="modal-body">
+            <div class="row g-3">
+              <div class="col-md-6">
+                <label class="form-label">Farm *</label>
+                <select name="farm_id" id="log-farm-select" class="form-select" required>
+                  <option value="">-- Select Farm --</option>
+                </select>
+              </div>
+              <div class="col-md-6">
+                <label class="form-label">Field Plot *</label>
+                <select name="field_id" id="log-field-select" class="form-select" required>
+                  <option value="">-- Choose Farm First --</option>
+                </select>
+              </div>
+              <div class="col-md-6">
+                <label class="form-label">Fertilizer Name *</label>
+                <input type="text" name="fertilizer_name" class="form-control" placeholder="e.g. Neem Coated Urea / DAP" required>
+              </div>
+              <div class="col-md-6">
+                <label class="form-label">Nutrient Composition / Grade</label>
+                <input type="text" name="nutrient_composition" class="form-control" placeholder="e.g. 46-0-0 / 18-46-0">
+              </div>
+              <div class="col-md-4">
+                <label class="form-label">Quantity *</label>
+                <input type="number" step="0.5" name="quantity" class="form-control" placeholder="e.g. 50" required>
+              </div>
+              <div class="col-md-2">
+                <label class="form-label">Unit</label>
+                <select name="unit" class="form-select">
+                  <option value="kg">kg</option>
+                  <option value="bags (50kg)">bags</option>
+                  <option value="liters">liters</option>
+                  <option value="tonnes">tonnes</option>
+                </select>
+              </div>
+              <div class="col-md-6">
+                <label class="form-label">Application Date *</label>
+                <input type="date" name="application_date" id="log-date-input" class="form-control" required>
+              </div>
+              <div class="col-md-4">
+                <label class="form-label">Growth Stage</label>
+                <select name="growth_stage" class="form-select">
+                  <option value="Pre-sowing">Pre-sowing</option>
+                  <option value="Basal at Sowing">Basal at Sowing</option>
+                  <option value="Active Tillering">Active Tillering</option>
+                  <option value="Panicle / Flowering">Panicle / Flowering</option>
+                  <option value="Grain / Tuber Filling">Grain / Tuber Filling</option>
+                </select>
+              </div>
+              <div class="col-md-4">
+                <label class="form-label">Application Method</label>
+                <select name="application_method" class="form-select">
+                  <option value="Broadcasting">Broadcasting</option>
+                  <option value="Band Placement">Band Placement</option>
+                  <option value="Top Dressing">Top Dressing</option>
+                  <option value="Foliar Spray">Foliar Spray</option>
+                  <option value="Fertigation">Fertigation (Drip)</option>
+                </select>
+              </div>
+              <div class="col-md-4">
+                <label class="form-label">Total Cost (₹)</label>
+                <input type="number" step="1" name="cost" class="form-control" placeholder="e.g. 1350" value="0">
+              </div>
+              <div class="col-12">
+                <label class="form-label">Notes</label>
+                <input type="text" name="notes" class="form-control" placeholder="e.g. Applied before evening light sprinkler run">
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Cancel</button>
+            <button type="submit" class="btn btn-agri btn-sm"><i class="bi bi-save me-1"></i> Record Application</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="/js/auth.js"></script>
+  <script>
+    async function loadFertilizerHistory() {
+      if (!AgriAuth.guard('farmer')) return;
+      AgriAuth.initUI();
+
+      // Set default date
+      const dateInput = document.getElementById('log-date-input');
+      if (dateInput) dateInput.value = new Date().toISOString().slice(0, 10);
+
+      // Populate farms in modal
+      const farmSelect = document.getElementById('log-farm-select');
+      const fieldSelect = document.getElementById('log-field-select');
+      const farmsRes = await AgriAuth.fetch('/api/farmer/farms');
+      if (farmsRes.success && farmsRes.farms) {
+        farmSelect.innerHTML = '<option value="">-- Select Farm --</option>' +
+          farmsRes.farms.map(f => `<option value="${f.id}">${f.farm_name}</option>`).join('');
+      }
+
+      farmSelect.addEventListener('change', async () => {
+        const farmId = farmSelect.value;
+        if (!farmId) {
+          fieldSelect.innerHTML = '<option value="">-- Choose Farm First --</option>';
+          return;
+        }
+        const fieldsRes = await AgriAuth.fetch(`/api/farmer/fields?farm_id=${farmId}`);
+        if (fieldsRes.success && fieldsRes.fields) {
+          fieldSelect.innerHTML = '<option value="">-- Select Field Plot --</option>' +
+            fieldsRes.fields.map(fd => `<option value="${fd.id}">${fd.field_name} (${fd.current_crop || 'Field'})</option>`).join('');
+        }
+      });
+
+      const res = await AgriAuth.fetch('/api/farmer/fertilizer-history');
+      const table = document.getElementById('fertilizer-history-table');
+
+      if (!res.success || !res.history || res.history.length === 0) {
+        table.innerHTML = '<tr><td colspan="7" class="text-center py-4 text-muted">No fertilizer applications logged yet. Click "Log Fertilizer Application" above.</td></tr>';
+        return;
+      }
+
+      const an = res.analytics || {};
+      document.getElementById('hist-total-apps').textContent = an.totalApplications || 0;
+      document.getElementById('hist-total-qty').textContent = `${(an.totalQuantity || 0).toLocaleString()} kg`;
+      document.getElementById('hist-total-cost').textContent = `₹ ${(an.totalCost || 0).toLocaleString()}`;
+
+      table.innerHTML = res.history.map(h => `
+        <tr>
+          <td>${new Date(h.application_date).toLocaleDateString()}</td>
+          <td class="fw-semibold text-dark">${h.farm_name} &bull; ${h.field_name}</td>
+          <td>${h.crop || 'Field Crop'} <br><small class="text-muted">${h.growth_stage || 'General'}</small></td>
+          <td class="fw-bold text-success">${h.fertilizer_name} <br><small class="text-muted">${h.nutrient_composition || ''}</small></td>
+          <td><span class="badge bg-light text-dark border">${h.quantity} ${h.unit}</span></td>
+          <td><span class="badge bg-secondary-subtle text-secondary">${h.application_method}</span></td>
+          <td class="fw-bold text-dark">₹ ${parseFloat(h.cost || 0).toLocaleString()}</td>
+        </tr>
+      `).join('');
+    }
+
+    async function handleLogFertilizer(e) {
+      e.preventDefault();
+      const form = e.target;
+      const body = {
+        farm_id: form.farm_id.value,
+        field_id: form.field_id.value,
+        fertilizer_name: form.fertilizer_name.value,
+        nutrient_composition: form.nutrient_composition.value,
+        quantity: form.quantity.value,
+        unit: form.unit.value,
+        application_date: form.application_date.value,
+        growth_stage: form.growth_stage.value,
+        application_method: form.application_method.value,
+        cost: form.cost.value,
+        notes: form.notes.value
+      };
+
+      const res = await AgriAuth.fetch('/api/farmer/fertilizer-history', {
+        method: 'POST',
+        body: JSON.stringify(body)
+      });
+
+      if (res.success) {
+        AgriAuth.toast('Application recorded successfully!', 'success');
+        form.reset();
+        const modal = bootstrap.Modal.getInstance(document.getElementById('logFertilizerModal'));
+        if (modal) modal.hide();
+        loadFertilizerHistory();
+      } else {
+        AgriAuth.toast(res.message || 'Error recording entry', 'error');
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', loadFertilizerHistory);
+  </script>
+</body>
+</html>

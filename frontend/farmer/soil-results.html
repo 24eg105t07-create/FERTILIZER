@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Soil Test Results | AgriWise Farmer</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/dashboard.css">
+</head>
+<body>
+
+  <div class="dashboard-wrapper">
+    <aside class="dashboard-sidebar">
+      <div class="sidebar-header">
+        <a class="sidebar-brand" href="/farmer/dashboard.html">
+          <div class="brand-logo-icon">🌱</div>
+          <span>AgriWise</span>
+        </a>
+      </div>
+      <ul class="sidebar-menu">
+        <li class="sidebar-category">Overview</li>
+        <li class="sidebar-item"><a href="/farmer/dashboard.html" class="sidebar-link"><i class="bi bi-grid-1x2"></i> <span>Dashboard</span></a></li>
+        <li class="sidebar-item"><a href="/farmer/profile.html" class="sidebar-link"><i class="bi bi-person-badge"></i> <span>My Profile</span></a></li>
+        <li class="sidebar-category">Farm Management</li>
+        <li class="sidebar-item"><a href="/farmer/farms.html" class="sidebar-link"><i class="bi bi-geo-alt"></i> <span>My Farms</span></a></li>
+        <li class="sidebar-item"><a href="/farmer/fields.html" class="sidebar-link"><i class="bi bi-border-all"></i> <span>My Fields</span></a></li>
+        <li class="sidebar-category">Soil &amp; Testing</li>
+        <li class="sidebar-item"><a href="/farmer/soil-details.html" class="sidebar-link"><i class="bi bi-layers"></i> <span>Soil Details</span></a></li>
+        <li class="sidebar-item"><a href="/farmer/soil-test.html" class="sidebar-link"><i class="bi bi-eyedropper"></i> <span>Soil Test Requests</span></a></li>
+        <li class="sidebar-item"><a href="/farmer/soil-results.html" class="sidebar-link active"><i class="bi bi-card-checklist"></i> <span>Soil Test Results</span></a></li>
+        <li class="sidebar-category">Fertilizer Plans</li>
+        <li class="sidebar-item"><a href="/farmer/recommendations.html" class="sidebar-link"><i class="bi bi-magic"></i> <span>Recommendations</span></a></li>
+        <li class="sidebar-item"><a href="/farmer/fertilizer-schedule.html" class="sidebar-link"><i class="bi bi-calendar3-week"></i> <span>Fertilizer Schedule</span></a></li>
+        <li class="sidebar-item"><a href="/farmer/fertilizer-history.html" class="sidebar-link"><i class="bi bi-clock-history"></i> <span>Fertilizer History</span></a></li>
+        <li class="sidebar-item"><a href="/farmer/soil-history.html" class="sidebar-link"><i class="bi bi-graph-up-arrow"></i> <span>Soil Health</span></a></li>
+        <li class="sidebar-category">Communication &amp; Reports</li>
+        <li class="sidebar-item"><a href="/farmer/messages.html" class="sidebar-link"><i class="bi bi-envelope"></i> <span>Messages</span></a></li>
+        <li class="sidebar-item"><a href="/farmer/reports.html" class="sidebar-link"><i class="bi bi-file-earmark-pdf"></i> <span>Reports</span></a></li>
+        <li class="sidebar-item"><a href="/farmer/settings.html" class="sidebar-link"><i class="bi bi-gear"></i> <span>Settings</span></a></li>
+      </ul>
+      <div class="sidebar-footer">
+        <div class="user-profile-preview">
+          <div class="user-avatar-circle">F</div>
+          <div class="flex-grow-1 overflow-hidden">
+            <div class="user-meta-name user-display-name">Farmer</div>
+            <div class="user-meta-role">Farmer Account</div>
+          </div>
+          <a href="#" class="btn-logout text-danger text-opacity-75"><i class="bi bi-box-arrow-right"></i></a>
+        </div>
+      </div>
+    </aside>
+
+    <div class="dashboard-main">
+      <header class="top-header">
+        <div class="header-left">
+          <button class="btn-sidebar-toggle" type="button"><i class="bi bi-list"></i></button>
+          <h1 class="header-page-title">Soil Test History &amp; Results</h1>
+        </div>
+        <div class="header-right">
+          <a href="/farmer/soil-test.html" class="btn btn-agri btn-sm">
+            <i class="bi bi-plus-circle me-1"></i> Submit New Soil Test
+          </a>
+        </div>
+      </header>
+
+      <main class="dashboard-content">
+        <div class="agri-card mb-4">
+          <div class="d-flex align-items-center justify-content-between mb-3">
+            <div>
+              <h5 class="fw-bold mb-0 text-dark">Track Soil Tests &amp; Analysis Progress</h5>
+              <small class="text-muted">Real-time status of your field plot samples from submission to agronomist approval</small>
+            </div>
+            <a href="/farmer/soil-test.html" class="btn btn-agri-outline btn-sm">
+              <i class="bi bi-plus-lg me-1"></i> New Request
+            </a>
+          </div>
+
+          <div class="table-responsive">
+            <table class="table agri-table">
+              <thead>
+                <tr>
+                  <th>Sample ID</th>
+                  <th>Test Date</th>
+                  <th>Plot Location</th>
+                  <th>Target Crop</th>
+                  <th>Review Status</th>
+                  <th>Recommendation</th>
+                  <th class="text-end">Actions</th>
+                </tr>
+              </thead>
+              <tbody id="soil-results-table">
+                <tr><td colspan="7" class="text-center py-4"><span class="spinner-border spinner-border-sm me-2"></span> Loading soil tests...</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="/js/auth.js"></script>
+  <script src="/js/farmer.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      AgriFarmer.initSoilResults();
+    });
+  </script>
+</body>
+</html>

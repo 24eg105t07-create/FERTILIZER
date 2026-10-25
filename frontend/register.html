@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Farmer Registration | AgriWise</title>
+  <!-- Bootstrap 5 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+  <div class="split-auth-container">
+    <!-- Left Agricultural Side -->
+    <div class="split-auth-sidebar d-none d-lg-flex" style="flex: 0.85;">
+      <div>
+        <a class="brand-logo text-white mb-4" href="/index.html">
+          <div class="brand-logo-icon">🌱</div>
+          <span class="text-white">AgriWise</span>
+        </a>
+        <span class="badge bg-white text-dark fw-bold px-3 py-2 mb-3">NEW REGISTRATION</span>
+        <h2 class="text-white fw-bold display-6 mb-3">Start Smart Farming Today</h2>
+        <p class="text-light lead" style="font-size: 1.05rem; max-width: 440px;">
+          Join thousands of farmers making scientifically sound nutrient decisions. Reduce fertilizer waste and boost crop yields.
+        </p>
+      </div>
+
+      <div class="small text-light text-opacity-75">
+        &copy; 2026 AgriWise Agricultural Decision Support System.
+      </div>
+    </div>
+
+    <!-- Right Registration Form -->
+    <div class="split-auth-main" style="flex: 1.25; overflow-y: auto;">
+      <div class="auth-form-card" style="max-width: 540px;">
+        <div class="d-lg-none mb-4 text-center">
+          <a class="brand-logo justify-content-center" href="/index.html">
+            <div class="brand-logo-icon">🌱</div>
+            <span>AgriWise</span>
+          </a>
+        </div>
+
+        <h2 class="auth-title" id="page-auth-title">Create Account</h2>
+        <p class="auth-subtitle" id="page-auth-subtitle">Select your account type below to get started with AgriWise.</p>
+
+        <!-- Role Selector Toggle -->
+        <div class="mb-4">
+          <label class="form-label fw-bold small text-uppercase text-secondary">1. Choose Account Type *</label>
+          <div class="row g-2">
+            <div class="col-6">
+              <input type="radio" class="btn-check" name="account_role" id="role-farmer" value="farmer" checked onchange="handleRoleSwitch('farmer')">
+              <label class="btn btn-outline-success w-100 p-3 text-start h-100 rounded-3 d-flex flex-column justify-content-between" for="role-farmer">
+                <div>
+                  <div class="fs-5 mb-1">🌱 <strong>Farmer</strong></div>
+                  <div class="small text-muted" style="font-size: 0.78rem;">Farms, fields, soil tests &amp; fertilizer plans</div>
+                </div>
+              </label>
+            </div>
+            <div class="col-6">
+              <input type="radio" class="btn-check" name="account_role" id="role-admin" value="admin" onchange="handleRoleSwitch('admin')">
+              <label class="btn btn-outline-primary w-100 p-3 text-start h-100 rounded-3 d-flex flex-column justify-content-between" for="role-admin">
+                <div>
+                  <div class="fs-5 mb-1">🛡️ <strong>Admin / Agronomist</strong></div>
+                  <div class="small text-muted" style="font-size: 0.78rem;">Review tests, rules &amp; dispatch recommendations</div>
+                </div>
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <form id="farmer-register-form">
+          <input type="hidden" name="role" id="hidden-role" value="farmer">
+          <div class="row g-3">
+            <div class="col-12">
+              <label class="form-label fw-bold small text-uppercase text-secondary">2. Account Credentials</label>
+            </div>
+            <div class="col-md-6">
+              <label class="form-label">Full Name *</label>
+              <input type="text" name="name" class="form-control" placeholder="e.g. Ramesh Kumar" required>
+            </div>
+            <div class="col-md-6">
+              <label class="form-label">Email Address *</label>
+              <input type="email" name="email" class="form-control" placeholder="ramesh@example.com" required>
+            </div>
+            <div class="col-md-6">
+              <label class="form-label">Mobile Number</label>
+              <input type="text" name="phone" class="form-control" placeholder="+91 98765 43210">
+            </div>
+            <div class="col-md-6">
+              <label class="form-label">Password *</label>
+              <input type="password" name="password" class="form-control" placeholder="Minimum 6 characters" required>
+            </div>
+
+            <!-- Regional Information (Farmer specific) -->
+            <div id="farmer-specific-section" class="col-12 row g-3 m-0 p-0">
+              <div class="col-12 mt-3">
+                <h6 class="fw-bold border-bottom pb-2 text-success">
+                  <i class="bi bi-geo-alt-fill me-1"></i> Regional Location &amp; Farming System
+                </h6>
+              </div>
+              <div class="col-md-4">
+                <label class="form-label">State *</label>
+                <input type="text" name="state" id="input-state" class="form-control" placeholder="e.g. Telangana / Punjab" required>
+              </div>
+              <div class="col-md-4">
+                <label class="form-label">District *</label>
+                <input type="text" name="district" id="input-district" class="form-control" placeholder="e.g. Warangal / Ludhiana" required>
+              </div>
+              <div class="col-md-4">
+                <label class="form-label">Village / Town</label>
+                <input type="text" name="village" class="form-control" placeholder="e.g. Dharmasagar">
+              </div>
+
+              <div class="col-md-6">
+                <label class="form-label">Farmer Category</label>
+                <select name="farmer_type" class="form-select">
+                  <option value="Smallholder">Smallholder (&lt; 5 Acres)</option>
+                  <option value="Medium Scale">Medium Scale (5 - 15 Acres)</option>
+                  <option value="Commercial Grower">Commercial Grower (&gt; 15 Acres)</option>
+                  <option value="Organic Certified">Organic / Natural Farming</option>
+                  <option value="Progressive Grower">Progressive Tech-Adopter</option>
+                </select>
+              </div>
+              <div class="col-md-6">
+                <label class="form-label">Total Farming Area (Acres)</label>
+                <input type="number" step="0.1" name="total_farming_area" class="form-control" placeholder="e.g. 8.5" value="5.0">
+              </div>
+            </div>
+
+            <!-- Admin Specific Info -->
+            <div id="admin-specific-section" class="col-12 row g-3 m-0 p-0" style="display: none;">
+              <div class="col-12 mt-3">
+                <h6 class="fw-bold border-bottom pb-2 text-primary">
+                  <i class="bi bi-award-fill me-1"></i> Agronomist / Expert Profile
+                </h6>
+              </div>
+              <div class="col-md-6">
+                <label class="form-label">Operating State / Region</label>
+                <input type="text" name="admin_state" class="form-control" placeholder="e.g. All India / Regional Office">
+              </div>
+              <div class="col-md-6">
+                <label class="form-label">Specialization / Department</label>
+                <input type="text" name="department" class="form-control" placeholder="e.g. Soil Science &amp; Plant Nutrition">
+              </div>
+            </div>
+          </div>
+
+          <button type="submit" id="reg-btn" class="btn btn-agri w-100 py-2 mt-4 mb-3">
+            <i class="bi bi-person-check-fill me-1"></i> Complete Registration &amp; Open Dashboard
+          </button>
+        </form>
+
+        <div class="text-center small text-secondary">
+          Already registered? <a href="/login.html" class="fw-bold text-success text-decoration-none">Sign in here</a> &bull;
+          <a href="/admin/login.html" class="fw-bold text-primary text-decoration-none">Admin Sign in</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="/js/auth.js"></script>
+  <script>
+    function handleRoleSwitch(role) {
+      const hiddenRole = document.getElementById('hidden-role');
+      const farmerSec = document.getElementById('farmer-specific-section');
+      const adminSec = document.getElementById('admin-specific-section');
+      const title = document.getElementById('page-auth-title');
+      const subtitle = document.getElementById('page-auth-subtitle');
+      const btn = document.getElementById('reg-btn');
+      const stateInput = document.getElementById('input-state');
+      const districtInput = document.getElementById('input-district');
+
+      hiddenRole.value = role;
+
+      if (role === 'admin') {
+        farmerSec.style.display = 'none';
+        adminSec.style.display = 'flex';
+        title.textContent = 'Create Agronomist / Admin Account';
+        subtitle.textContent = 'Register to review soil tests, calibrate recommendation rules, and dispatch plans.';
+        btn.className = 'btn btn-primary w-100 py-2 mt-4 mb-3';
+        btn.innerHTML = '<i class="bi bi-shield-check me-1"></i> Register as Agronomist &amp; Open Console';
+        stateInput.required = false;
+        districtInput.required = false;
+      } else {
+        farmerSec.style.display = 'flex';
+        adminSec.style.display = 'none';
+        title.textContent = 'Create Farmer Profile';
+        subtitle.textContent = 'Fill in your basic details and farm location to get personalized advisories.';
+        btn.className = 'btn btn-agri w-100 py-2 mt-4 mb-3';
+        btn.innerHTML = '<i class="bi bi-person-check-fill me-1"></i> Complete Registration &amp; Open Dashboard';
+        stateInput.required = true;
+        districtInput.required = true;
+      }
+    }
+
+    // Auto-select role if passed in query string (?role=admin)
+    document.addEventListener('DOMContentLoaded', () => {
+      const urlParams = new URLSearchParams(window.location.search);
+      const roleParam = urlParams.get('role');
+      if (roleParam === 'admin') {
+        document.getElementById('role-admin').checked = true;
+        handleRoleSwitch('admin');
+      }
+    });
+
+    document.getElementById('farmer-register-form').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const form = e.target;
+      const btn = document.getElementById('reg-btn');
+      const role = document.getElementById('hidden-role').value;
+
+      const body = {
+        role,
+        name: form.name.value,
+        email: form.email.value,
+        phone: form.phone.value,
+        password: form.password.value,
+        state: role === 'admin' ? (form.admin_state?.value || 'India') : form.state.value,
+        district: role === 'admin' ? 'Headquarters' : form.district.value,
+        village: role === 'admin' ? null : form.village.value,
+        farmer_type: role === 'admin' ? 'Agronomist' : form.farmer_type.value,
+        total_farming_area: role === 'admin' ? 0 : form.total_farming_area.value
+      };
+
+      btn.disabled = true;
+      btn.innerHTML = '<span class="spinner-border spinner-border-sm me-2"></span> Creating Account...';
+
+      const res = await AgriAuth.fetch('/api/auth/register', {
+        method: 'POST',
+        body: JSON.stringify(body)
+      });
+
+      btn.disabled = false;
+      btn.innerHTML = role === 'admin'
+        ? '<i class="bi bi-shield-check me-1"></i> Register as Agronomist &amp; Open Console'
+        : '<i class="bi bi-person-check-fill me-1"></i> Complete Registration &amp; Open Dashboard';
+
+      if (res.success && res.token) {
+        AgriAuth.setToken(res.token);
+        AgriAuth.setUser(res.user);
+        AgriAuth.toast(res.message || 'Account registered successfully!', 'success');
+        setTimeout(() => {
+          window.location.href = res.redirectUrl || (role === 'admin' ? '/admin/dashboard.html' : '/farmer/dashboard.html');
+        }, 800);
+      } else {
+        AgriAuth.toast(res.message || 'Registration failed', 'error');
+      }
+    });
+  </script>
+</body>
+</html>
