@@ -9,6 +9,9 @@
     "db:init": "node database/init.js",
     "db:seed": "node database/seed.js"
   },
+  "engines": {
+    "node": ">=18.0.0"
+  },
   "keywords": [
     "agriculture",
     "fertilizer-recommendation",
