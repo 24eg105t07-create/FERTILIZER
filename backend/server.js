@@ -65,6 +65,16 @@ app.get('/', (req, res) => {
   res.sendFile(path.join(frontendDir, 'index.html'));
 });
 
+// Download PPT presentation route
+app.get('/download-ppt', (req, res) => {
+  const pptPath = path.join(frontendDir, 'AgriWise_Presentation.pptx');
+  if (fs.existsSync(pptPath)) {
+    res.download(pptPath, 'AgriWise_Presentation.pptx');
+  } else {
+    res.status(404).send('Presentation file not found');
+  }
+});
+
 // Global 404 handler for unmatched APIs
 app.use('/api/*', (req, res) => {
   res.status(404).json({
